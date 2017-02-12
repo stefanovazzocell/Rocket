@@ -22,3 +22,4 @@ You are welcome to try to improve the code. For any question, contact stefanovaz
 ## License
 
 This code is distributed under the Apache 2.0 license.
+Jquery and SJCL (GNU GPL 2.0) are used in this program.
