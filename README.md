@@ -15,6 +15,10 @@ I will soon provide instructions on how to install the code.
 
 I will soon add documentation for the API.
 
+## Requirements
+
+This application requires PHP and MySQL to be installed on your server. Works better with PHP7 and Apache2.
+
 ## Contributors
 
 You are welcome to try to improve the code. For any question, contact stefanovazzocell@gmail.com.
