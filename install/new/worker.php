@@ -127,7 +127,7 @@ function getLink() {
 		exit('~E');
 	}
 	db_query('UPDATE `links` SET `views`=`views`-1 WHERE `short`=(?) AND `views`>0 AND `expiration` >= NOW()', $_POST['_s']);
-	echo(json_encode(array("_d"=>$db_response[0]['data'], "_h"=>$db_response[0]['hash'])));
+	echo(json_encode($db_response[0]));
 	exit();
 }
 
@@ -177,7 +177,7 @@ switch ($_POST["a"]) {
 	case 'get':
 		if (empty($_POST["_s"])) {
 			tax(150);
-			exit();
+			exit('');
 		} else tax(1);
 		getLink();
 		// if bad add tax(149);

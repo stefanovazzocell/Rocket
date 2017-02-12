@@ -327,7 +327,7 @@
 	}
 	// Link Make Step 2
 	function link_make_2(short, long, max_views, max_date, server, request_short, request_hash) {
-		var request_data = helper_encrypt(long, request_short + request_hash, [server_hash[2], server_hash[3]])
+		var request_data = helper_encrypt(long, short + request_hash, [server_hash[2], server_hash[3]])
 		$('.loading_bar').width('50%');
 		var request_max_views = max_views;
 		var request_exp_date = max_date;

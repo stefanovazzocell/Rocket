@@ -5,10 +5,10 @@
 </head>
 <body style="background-color: #000; color: #a10; text-align: center; font-size: 160%;">
 Redirecting...
-<script src="../sjcl.js"></script>
+<script src="new/sjcl.js"></script>
 <script>
 	if (location.hash.substring(1) == "") location.replace("https://go.stefanovazzoler.com/new/#redirect");
-	var server_worker = "worker.php";
+	var server_worker = "new/worker.php";
 	var app_version = '80';
 	var server_hash = ['',
 				'',
@@ -34,11 +34,14 @@ Redirecting...
 		xhr.onload = function() {
 			if (xhr.status === 200 && xhr.responseText.length > 2) {
 				var data = JSON.parse(xhr.responseText);
-				location.replace(helper_decrypt(data['data'], location.hash.substring(1) + data['hash'], [server_hash[2],server_hash[3]]));
+				var url = helper_decrypt(data['data'], location.hash.substring(1) + data['hash'], [server_hash[2],server_hash[3]]);
+				if (url.substr(0, 7) !== "http://" && url.substr(0, 8) !== "https://") url = "http://" + url;
+				location.replace(url);
 			} else alert('Error, try to reload.');
 		};
-		xhr.send(encodeURI('a=get&_s=' + helper_hash(location.hash.substring(1),1000,[server_hash[0],server_hash[1]])));
+		xhr.send('a=get&v=' + app_version + '&_s=' + encodeURIComponent(helper_hash(location.hash.substring(1),1000,[server_hash[0],server_hash[1]])));
 	}
+	request();
 </script>
 </body>
 </html>
