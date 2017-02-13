@@ -7,7 +7,6 @@
 Redirecting...
 <script src="new/sjcl.js"></script>
 <script>
-	if (location.hash.substring(1) == "") location.replace("https://go.stefanovazzoler.com/new/#redirect");
 	var server_worker = "new/worker.php";
 	var app_version = '80';
 	var server_hash = ['',
@@ -16,11 +15,11 @@ Redirecting...
 				''];
 	// Hash data
 	function helper_hash(data = '', number = 1000, hash = ['', '']) {
-		var hash = data;
+		var hash_id = data;
 		for (var i = 0; i < number; i++) {
-			hash = sjcl.codec.base64.fromBits(sjcl.hash.sha512.hash(hash[0] + hash + hash[1]));
+			hash_id = sjcl.codec.base64.fromBits(sjcl.hash.sha512.hash(hash[0] + hash_id + hash[1]));
 		}
-		return hash;
+		return hash_id;
 	}
 	// Decrypt Data
 	function helper_decrypt(data = '', password = '', hash = ['', '']) {
@@ -41,7 +40,9 @@ Redirecting...
 		};
 		xhr.send('a=get&v=' + app_version + '&_s=' + encodeURIComponent(helper_hash(location.hash.substring(1),1000,[server_hash[0],server_hash[1]])));
 	}
-	request();
+	if (location.hash.substring(1) == "") {
+		location.replace("https://go.stefanovazzoler.com/new/#redirect");
+	} else request();
 </script>
 </body>
 </html>
