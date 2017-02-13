@@ -3,6 +3,7 @@
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Url Shortener - Interface</title>
+	<link rel="manifest" href="/manifest.json">
 	<style type="text/css">
 		body {
 			color: #fff;
@@ -294,11 +295,11 @@
 	}
 	// Hash data
 	function helper_hash(data = '', number = 5000, hash = ['', '']) {
-		var hash = data;
+		var hash_id = data;
 		for (var i = 0; i < number; i++) {
-			hash = sjcl.codec.base64.fromBits(sjcl.hash.sha512.hash(hash[0] + hash + hash[1]));
+			hash_id = sjcl.codec.base64.fromBits(sjcl.hash.sha512.hash(hash[0] + hash_id + hash[1]));
 		}
-		return hash;
+		return hash_id;
 	}
 	// Encrypt Data
 	function helper_encrypt(data = '', password = '', hash = ['', '']) {
@@ -342,13 +343,13 @@
 					ui_done(server_shortlink + '#' + temp_data);
 					temp_data = '';
 				} else {
-					console.log('Retrying');
 					temp_trial += 1; // Retry +1 trial
-					if (temp_trial > 5) {
-						console.log('Error: 5 Trials Failed');
+					if (temp_trial > 3) {
+						console.log('Error: 3 Trials Failed');
 						ui_error(data);
 						return false;
 					}
+					console.log('Retrying');
 					link_make(temp_data + random_string(1));
 				}
 			})
@@ -381,11 +382,5 @@
 			link_make();
 		});
 	});
-	/*
-	* Notes
-	
-	errors = ['Wrong Request', 'Bad Connection, Retry', 'IP Reached Limit'];
-
-	*/
 </script>
 </html>
