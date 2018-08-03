@@ -4,9 +4,98 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<link rel="stylesheet" href="../public_cdn/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../public_cdn/css/ui.css">
 		<title>Rocket</title>
 	</head>
 	<body>
+		<nav class="navbar fixed-top navbar-light bg-light">
+			<a class="navbar-brand" href="#">Rocket</a>
+		</nav>
+		<div class="container">
+			<nav class="nav nav-pills nav-fill">
+				<a class="nav-item nav-link active" href="#">Create</a>
+				<a class="nav-item nav-link" href="#">Manage</a>
+			</nav><br>
+			<div class="card text-center">
+				<div class="card-header">
+					<ul class="nav nav-tabs card-header-tabs">
+						<li class="nav-item">
+							<a class="nav-link active" href="#">Link</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">Text</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">Image</a>
+						</li>
+					</ul>
+				</div>
+				<div class="card-body">
+					<div class="form-group mb-3">
+						<label for="serverUrl">Short Link</label>
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text" id="serverUrl">rkt.example.com/#</span>
+							</div>
+							<input type="text" class="form-control" id="link">
+						</div>
+					</div>
+					<div class="form-group mb-3">
+						<label for="dataUrl">Original Link</label>
+						<input type="url" class="form-control" id="dataUrl" placeholder="https://">
+					</div>
+					<div class="form-group mb-3">
+						<label for="clicks">Clicks</label>
+						<div class="input-group">
+							<div class="input-group-prepend" id="button-addon3">
+								<button class="btn btn-outline-secondary" type="button">-10</button>
+								<button class="btn btn-outline-secondary" type="button">-1</button>
+							</div>
+							<input type="number" max=1000 min=1 id="clicks" class="form-control" style="text-align: center;" value=10>
+							<div class="input-group-append" id="button-addon4">
+								<button class="btn btn-outline-secondary" type="button">+1</button>
+								<button class="btn btn-outline-secondary" type="button">+10</button>
+							</div>
+						</div>
+					</div>
+					<div class="form-group mb-3">
+						<label for="hours">Expiration</label>
+						<div class="input-group mb-3">
+							<div class="input-group-prepend" id="button-addon3">
+								<span class="input-group-text">Days</span>
+							</div>
+							<input type="number" id="days" max=365 class="form-control" style="text-align: center;" value=1>
+							<div class="input-group-append" id="button-addon4">
+								<button class="btn btn-outline-secondary" type="button">-1</button>
+								<button class="btn btn-outline-secondary" type="button">+1</button>
+							</div>
+						</div>
+						<div class="input-group mb-3">
+							<div class="input-group-prepend" id="button-addon3">
+								<span class="input-group-text">Hours</span>
+							</div>
+							<input type="number" id="hours" min=0 max=24 class="form-control" style="text-align: center;" value=0>
+							<div class="input-group-append" id="button-addon4">
+								<button class="btn btn-outline-secondary" type="button">-1</button>
+								<button class="btn btn-outline-secondary" type="button">+1</button>
+							</div>
+						</div>
+					</div><br>
+					<button type="button" class="btn btn-primary btn-lg btn-block">Create</button>
+				</div>
+			</div><br>
+			<ul class="nav justify-content-center">
+				<li class="nav-item">
+					<a class="nav-link" href="#" target="_blank">Terms of Service</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#" target="_blank">Privacy Policy</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="https://github.com/stefanovazzocell/" target="_blank">GitHub</a>
+				</li>
+			</ul>
+		</div>
 		<script src="../public_cdn/js/njq.js"></script>
 		<script src="../public_cdn/js/ui.js"></script>
 	</body>
