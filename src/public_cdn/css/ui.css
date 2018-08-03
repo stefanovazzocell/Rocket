@@ -6,11 +6,11 @@ body {
 #header {
 	position: fixed;
 	width: 100vw;
-	background-color: #46d;
 	color: #fff;
 	top: 0;
 	height: 55px;
-	box-shadow: 0 0 10px #46d;
+	box-shadow: 0 0 4px #46d;
+	line-height: 55px;
 }
 #alert {
 	z-index: 9;
@@ -21,25 +21,116 @@ body {
 	top: 0;
 	color: #fff;
 	height: 55px;
+	box-shadow: 0 0 15px 8px #d55;
 }
 #content {
+	background-color: #e9e9e9;
 	position: fixed;
-	width: 100vw;
+	width: 90vw;
+	width: calc(100vw - 20px);
 	top: 55px;
 	bottom: 30px;
 	overflow: auto;
+	padding: 15px 10px 15px 10px;
 }
 #footer {
 	position: fixed;
 	width: 100vw;
-	background-color: #46d;
 	bottom: 0;
 	height: 30px;
-	box-shadow: 0 0 10px #68f;
+	box-shadow: 0 0 4px #68f;
 }
-/* Animation helpers */
-/* Animations */
+/* background colors */
+.bgBlue {
+	background-color: #46d;
+}
+.bgDrkBlue {
+	background-color: #56a;
+}
+.bgLtBlue {
+	background-color: #8af;
+}
+.bgAqua {
+	background-color: #4ae;
+}
+/* Blocks */
+.block {
+	overflow: hidden;
+	background-color: #fff;
+	width: 100%;
+	box-shadow: 0 0 0px 1px #000;
+}
+.bFlexBox {
+	display: flex;
+}
+.bLong {
+	margin: auto;
+	width: 90%;
+	width: calc(100% - 70px);
+	padding: 0 10px 0 10px;
+}
+.bFlex {
+	margin: auto;
+	padding: 0 10px 0 10px;
+}
+.bP {
+	width: 90vw;
+	width: calc(100vw - 40px);
+	padding: 0 10px 0 10px;
+}
+.bSquare {
+	width: 50px;
+	text-align: center;
+}
+.bRect100 {
+	width: 100px;
+	text-align: center;
+}
+.b25 {
+	height: 25px;
+	line-height: 25px;
+	font-size: 18px;
+}
+.b50 {
+	height: 50px;
+	line-height: 50px;
+	font-size: 30px;
+}
+/* Blocks Helpers */
+.bInput {
+	width: 90%;
+	width: calc(100vw - 40px);
+}
+.bSpacer {
+	margin-bottom: 15px;
+}
+.bBreak {
+	height: 1px;
+	background-color: #000;
+}
+.bCenter {
+	text-align: center;
+}
+.bClick {
+	background-color: rgba(0,0,0,0.2);
+	color: #ddd;
+}
+.bClick:focus, .bClick:hover {
+	background-color: rgba(0,0,0,0.4);
+	color: #eee;
+}
+.bClick:active {
+	background-color: rgba(0,0,0,0.6);
+	color: #fff;
+}
 /* Changing default behavior */
+input {
+	border: none;
+	padding: 0 10px 0 10px;
+}
+input:focus {
+	outline: none;
+}
 #footer > a {
 	text-decoration: none;
 	color: #fff;
@@ -54,14 +145,13 @@ body {
 }
 .singleText1 {
 	font-size: 28px;
-	line-height: 55px;
 }
 .singleText1 > span {
 	padding-left: 10px;
 }
 .singleText2 {
 	font-size: 20px;
-	line-height: 27px;
+	line-height: 29px;
 	padding: 0 15px 0 15px;
 	text-align: center;
 }

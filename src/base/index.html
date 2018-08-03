@@ -6,11 +6,80 @@
 		<link rel="stylesheet" type="text/css" href="../public_cdn/css/ui.css">
 	</head>
 	<body>
-		<div id="header" class="singleText1 noSelect"><span>Shortener</span></div>
+		<div id="header" class="bgBlue singleText1 noSelect"><span>Shortener</span></div>
 		<div id="alert" class="singleText2 noSelect hidden"></div>
-		<div id="content">
+		<div id="content" class="noSelect">
+			<div class=" bSpacer bFlexBox">
+				<div class="b25 bRect100 bClick bFlex bgLtBlue">Link</div>
+				<div class="b25 bRect100 bClick bFlex bgLtBlue">Text</div>
+				<div class="b25 bRect100 bClick bFlex bgLtBlue">Image</div>
+			</div>
+			<div class="block bSpacer">
+				<div class="b25 bCenter bP">
+					shortener.example.com/#
+				</div>
+				<input type="text" class="b50 bInput bCenter" name="">
+				<div class="bBreak"></div>
+				<div class="b25 bCenter bP">
+					Original Link
+				</div>
+				<input type="text" class="b50 bInput bCenter" name="">
+				<div class="bBreak"></div>
+				<div class="b25 bCenter bP">
+					Clicks
+				</div>
+				<div class="bFlexBox bCenter bgLtBlue">
+					<div class="b50 bRect100 bClick" onclick="var current = parseInt($$('#clicks').val()); $$('#clicks').val(current > 11 ? current - 10 : 1);"><b>-10</b></div>
+					<input id="clicks" type="number" max="1000" min="1" value="10" class="b50 bRect100 bFlex" name="">
+					<div class="b50 bRect100 bClick" onclick="var current = parseInt($$('#clicks').val()); $$('#clicks').val(current < 990 ? current + 10 : 1000);"><b>+10</b></div>
+				</div>
+				<div class="bBreak"></div>
+				<div class="b25 bCenter bP">
+					Hours
+				</div>
+				<div class="bFlexBox bCenter bgLtBlue">
+					<div class="hours b50 bRect100 bClick" onclick="var current = parseInt($$('#hours').val()); $$('#hours').val(current > 24 ? current - 24 : 1);"><b>-24h</b></div>
+					<input id="hours" type="number" max="8760" min="1" value="10" class="b50 bRect100 bFlex" name="">
+					<div class="hours b50 bRect100 bClick" onclick="var current = parseInt($$('#hours').val()); $$('#hours').val(current < 8700 ? current + 24 : 8724);"><b>+24h</b></div>
+				</div>
+				<div class="b25 bCenter bP">
+					<span id="aDays">0</span> day(s) <span id="aHours">10</span> hour(s)
+				</div>
+				<div class="bBreak"></div>
+				<div class="bBreak"></div>
+				<div class="bBreak"></div>
+				<div class="bFlexBox bgAqua">
+					<div class="b50 bRect100 bClick">▼</div>
+					<div class="b50 bLong bCenter bClick">Create</div>
+				</div>
+			</div>
+			<div class="b50"></div>
+			<div class="b50"></div>
+			<div class="b50"></div>
+			<div class="b50"></div>
+			<div class="b50"></div>
+			<div class="b50"></div>
+			<div class="block bSpacer">
+				<div class="bFlexBox bgLtBlue">
+					<div class="b50 bLong">New</div>
+					<div class="b50 bSquare bClick">✖</div>
+				</div>
+				<div class="bBreak"></div>
+				<div class="b25 bCenter bP">
+					Some text
+				</div>
+				<div class="bBreak"></div>
+				<div class="b25 bCenter bP bgDrkBlue bFlexBox">
+					<div class="b25 bFlex bCenter bClick" onclick="msg('hello world!');">Hello World</div>
+				</div>
+			</div>
+			<div class="block bSpacer bFlexBox">
+				<div class="b25 bRect100 bClick">✖</div>
+				<div class="b25 bLong">Head</div>
+				<div class="b25 bSquare bClick">✖</div>
+			</div>
 		</div>
-		<div id="footer" class="singleText3 flex noSelect"><a href="https://github.com/stefanovazzocell/" target="_blank">GitHub</a><a href="" target="_blank">ToS</a><a href="" target="_blank">Privacy</a></div>
+		<div id="footer" class="bgBlue singleText3 flex noSelect"><a href="https://github.com/stefanovazzocell/" target="_blank">GitHub</a><a href="" target="_blank">ToS</a><a href="" target="_blank">Privacy</a></div>
 		<script src="../public_cdn/js/njq.js"></script>
 		<script src="../public_cdn/js/ui.js"></script>
 	</body>
