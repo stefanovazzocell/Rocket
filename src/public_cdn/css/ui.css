@@ -1,0 +1,60 @@
+body {
+	margin: 0;
+	font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+/* The big 3 */
+#header {
+	position: fixed;
+	width: 100vw;
+	background-color: #46d;
+	color: #fff;
+	top: 0;
+	height: 55px;
+	box-shadow: 0 0 10px #68f;
+}
+#content {
+	position: fixed;
+	width: 100vw;
+	top: 55px;
+	bottom: 30px;
+	overflow: auto;
+}
+#footer {
+	position: fixed;
+	width: 100vw;
+	background-color: #46d;
+	bottom: 0;
+	height: 30px;
+	box-shadow: 0 0 10px #68f;
+}
+/* Changing default behavior */
+#footer > a {
+	text-decoration: none;
+	color: #fff;
+}
+#footer > a:visited {
+	color: #fff;
+}
+/* Helpers Class */
+.flex {
+	display: flex;
+	justify-content: space-around;
+}
+.singleText1 {
+	font-size: 28px;
+	line-height: 55px;
+}
+.singleText1 > span {
+	padding-left: 15px;
+}
+.singleText3 {
+	font-size: 18px;
+	line-height: 30px;
+}
+.noSelect {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
