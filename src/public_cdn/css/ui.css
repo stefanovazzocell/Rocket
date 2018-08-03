@@ -2,7 +2,7 @@ body {
 	margin: 0;
 	font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
 }
-/* The big 3 */
+/* The big 3 +1 */
 #header {
 	position: fixed;
 	width: 100vw;
@@ -10,7 +10,18 @@ body {
 	color: #fff;
 	top: 0;
 	height: 55px;
-	box-shadow: 0 0 10px #68f;
+	box-shadow: 0 0 10px #46d;
+}
+#alert {
+	z-index: 9;
+	position: fixed;
+	width: 90vw;
+	width: calc(100vw - 30px);
+	background-color: #d55;
+	top: 0;
+	transform: translateY(-55px);
+	color: #fff;
+	height: 55px;
 }
 #content {
 	position: fixed;
@@ -26,6 +37,20 @@ body {
 	bottom: 0;
 	height: 30px;
 	box-shadow: 0 0 10px #68f;
+}
+/* Animation helpers */
+.show {
+	-webkit-animation: show 6.0s 0s 1 ease forwards;
+	animation: show 6.0s 0s 1 ease forwards;
+}
+/* Animations */
+@-webkit-keyframes show {
+    0%, 100% { transform: translateY(-55px)); }
+    20%, 80% { transform: translateY(0); }
+}
+@keyframes show {
+    0%, 100% { transform: translateY(-55px); }
+    20%, 80% { transform: translateY(0); }
 }
 /* Changing default behavior */
 #footer > a {
@@ -45,7 +70,13 @@ body {
 	line-height: 55px;
 }
 .singleText1 > span {
-	padding-left: 15px;
+	padding-left: 10px;
+}
+.singleText2 {
+	font-size: 20px;
+	line-height: 27px;
+	padding: 0 15px 0 15px;
+	text-align: center;
 }
 .singleText3 {
 	font-size: 18px;
