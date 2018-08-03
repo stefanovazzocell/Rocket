@@ -19,7 +19,6 @@ body {
 	width: calc(100vw - 30px);
 	background-color: #d55;
 	top: 0;
-	transform: translateY(-55px);
 	color: #fff;
 	height: 55px;
 }
@@ -39,19 +38,7 @@ body {
 	box-shadow: 0 0 10px #68f;
 }
 /* Animation helpers */
-.show {
-	-webkit-animation: show 6.0s 0s 1 ease forwards;
-	animation: show 6.0s 0s 1 ease forwards;
-}
 /* Animations */
-@-webkit-keyframes show {
-    0%, 100% { transform: translateY(-55px)); }
-    20%, 80% { transform: translateY(0); }
-}
-@keyframes show {
-    0%, 100% { transform: translateY(-55px); }
-    20%, 80% { transform: translateY(0); }
-}
 /* Changing default behavior */
 #footer > a {
 	text-decoration: none;
@@ -88,4 +75,7 @@ body {
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
+}
+.hidden {
+	display: none;
 }
