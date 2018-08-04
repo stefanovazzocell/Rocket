@@ -2,8 +2,20 @@
 
 var data;
 var type;
+var password = false;
 
-
+/*
+* showResults() - Shows the results of the API call 
+*/
+function showResults() {
+	if (password) {
+		// If has password, ask for it
+		$$('#addPassword').removeClass('hidden');
+	} else {
+		// Else show correct block
+		$$('#' + type + 'Data').removeClass('hidden');
+	}
+}
 
 // When page ready start functions
 $$().ready(function() {
@@ -21,7 +33,9 @@ $$().ready(function() {
 		} else {
 			// If succeded, save new data
 			data = decrypted;
+			password = false;
 			// Show form
+			showResults();
 		}
 	});
 	// Visit the link
@@ -32,4 +46,15 @@ $$().ready(function() {
 	$$('#show').onClick(function() {
 		$$('#preview').prop('src',data);
 	});
+	// Call get
+	var apiResponse = apiGet();
+	// Process Response
+	data = apiResponse['d'];
+	parameters = JSON.parse(apiResponse['p']);
+	type = parameters['t'];
+	password = parameters.hasOwnProperty('p');
+	// Hide welcome message
+	$$('welcome').addClass('hidden');
+	// Visualize Response
+	showResults();
 });
