@@ -14,7 +14,7 @@
 		<div class="container">
 			<nav class="nav nav-pills nav-fill">
 				<a class="nav-item nav-link active" href="#">Create</a>
-				<a class="nav-item nav-link" href="#">Manage</a>
+				<a class="nav-item nav-link" href="../manage">Manage</a>
 			</nav><br>
 			<div id="alert" class="alert alert-warning fade hidden"></div>
 			<div class="card text-center">
@@ -111,7 +111,7 @@
 					</div><br>
 					<button type="button" class="btn btn-primary btn-lg btn-block">Create</button><br>
 					<div>
-						By clicking 'create' you have read and agreed with the <a href="#" target="_blank">Terms of Service</a> and <a href="#" target="_blank">Privacy Policy</a>
+						By clicking 'Create' you have read and agreed with the <a href="#" target="_blank">Terms of Service</a> and <a href="#" target="_blank">Privacy Policy</a>
 					</div>
 				</div><br>
 				<div class="accordion">
@@ -131,7 +131,7 @@
 												<input type="checkbox" id="optPassword">
 											</div>
 										</div>
-										<input type="text" class="form-control" id="optPasswordPass" disabled>
+										<input type="text" class="form-control" id="optPasswordVal" disabled>
 									</div>
 									<div>
 										If you enable password protection, the user will be asked for an additional password to access the data. Note that a failed attempt will still count towards the views.
@@ -145,7 +145,7 @@
 												<input type="checkbox" id="optEdit">
 											</div>
 										</div>
-										<input type="text" class="form-control" id="optEditPass" disabled>
+										<input type="text" class="form-control" id="optEditVal" minlength=1 disabled>
 									</div>
 									<div>Enabling Editing disables stats</div><br>
 									<label for="optDel">Allow Deletion</label>
@@ -155,7 +155,7 @@
 												<input type="checkbox" id="optDel">
 											</div>
 										</div>
-										<input type="text" class="form-control" id="optDelPass" disabled>
+										<input type="text" class="form-control" id="optDelVal" disabled>
 									</div>
 									<div>You can leave the password blank to allow public deletion</div>
 								</div>
@@ -167,7 +167,7 @@
 												<input type="checkbox" id="optStats">
 											</div>
 										</div>
-										<input type="text" class="form-control" id="optStatsPass" disabled>
+										<input type="text" class="form-control" id="optStatsVal" disabled>
 									</div>
 									<div>You can leave the password to allow access to the stats</div>
 									<div>Enabling Stats disables editing and forces clicks to be at least 10</div>
