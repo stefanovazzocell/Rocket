@@ -2,7 +2,6 @@
 
 // Track for alertTimeout
 var alertTimeout;
-var selected = 'url';
 
 /*
 * autoCollapse(id) - Set an event to collapse cards
@@ -123,15 +122,15 @@ function toggleInput(id, forceClose) {
 		// Check if is checked
 		if (btn.first().checked) {
 			// Enabled
-			$$('#opt' + id + 'Pass').first().disabled = false;
+			$$('#opt' + id + 'Val').first().disabled = false;
 			// Close others
 			applyToAll(function(elem) {
 				$$('#opt' + elem).first().checked = false;
-				$$('#opt' + elem + 'Pass').first().disabled = true;
+				$$('#opt' + elem + 'Val').first().disabled = true;
 			}, forceClose);
 		} else {
 			// Disable
-			$$('#opt' + id + 'Pass').first().disabled = true;
+			$$('#opt' + id + 'Val').first().disabled = true;
 		}
 	});
 }
