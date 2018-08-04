@@ -190,7 +190,7 @@
 		* @param  onFail(xhr) (optional) function function called in case of failure
 		* @param  isJson (optional) bool true if there is the need to encode data as json, false otherwise
 		*/
-		post: function (url, data={}, onSuccess=function(){}, onFail=function(){console.error('NJQ POST Error');}, isJson=false) {
+		post: function (url, data={}, onSuccess=function(){}, onFail=function(){console.error('NJQ POST Error');}, isJson=true) {
 			this.ajax(url, 'POST', data, onSuccess, onFail, '', isJson); // Make ajax POST request
 		},
 		/*
