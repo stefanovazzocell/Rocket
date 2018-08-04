@@ -75,3 +75,26 @@ function encryptData(data, parameters, link, bigData = false, addPassword=false)
 	// Return data to success function
 	return out;
 }
+
+/*
+* decryptData(data, parameters, link) - Decryption Utility for Rocket
+*
+* @requires data String is primary data to be decrypted
+* @requires parameters Object is secondary data to be decrypted
+* @requires link String is short link to use
+* @returns Object containing ''d', 'p' parameters or false if fails
+*/
+function decryptData(data, parameters, link) {
+	// Get decrypted data
+	var d = decrypt(data, hash(link, 100));
+	// Get decrypted parameters
+	var p = decrypt(parameters, hash(link, 100));
+	// If any decryption fails, fail
+	if (d === false || p === false) {
+		return false;
+	}
+	// parse parameters
+	p = JSON.parse(p);
+	// Return data
+	return { 'd': d, 'p': p };
+}
