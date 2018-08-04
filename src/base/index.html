@@ -38,12 +38,27 @@
 							<div class="input-group-prepend">
 								<span class="input-group-text" id="serverUrl">rkt.example.com/#</span>
 							</div>
-							<input type="text" class="form-control" id="inputLink" required>
+							<input type="text" class="form-control" id="inputLink">
 						</div>
 					</div>
-					<div class="form-group mb-3">
+					<div id="linkData" class="form-group mb-3">
 						<label for="inputDataUrl">Original Link</label>
 						<input type="url" class="form-control" id="inputDataUrl" placeholder="https://">
+					</div>
+					<div id="textData" class="form-group mb-3"><!-- hidden -->
+						<label for="inputDataText">Original Link</label>
+						<textarea id="inputDataText" class="form-control"></textarea>
+					</div>
+					<div id="imgData" class="form-group mb-3"><!-- hidden -->
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text">Image</span>
+							</div>
+							<div class="custom-file">
+								<input type="file" accept="image/*" class="custom-file-input" id="inputDataImage">
+								<label class="custom-file-label" for="inputDataImage" id="labelImage"></label>
+							</div>
+						</div>
 					</div>
 					<div class="form-group mb-3">
 						<label for="inputClicks">Clicks</label>
