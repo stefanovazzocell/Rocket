@@ -21,13 +21,13 @@
 				<div class="card-header">
 					<ul class="nav nav-tabs card-header-tabs">
 						<li class="nav-item">
-							<a class="nav-link active" href="#">Link</a>
+							<a class="nav-link tabSwitch active" for="url" href="#">Link</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">Text</a>
+							<a class="nav-link tabSwitch" for="text" href="#">Text</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">Image</a>
+							<a class="nav-link tabSwitch" for="img" href="#">Image</a>
 						</li>
 					</ul>
 				</div>
@@ -41,26 +41,37 @@
 							<input type="text" class="form-control" id="inputLink">
 						</div>
 					</div>
-					<div id="linkData" class="form-group mb-3">
+					<div id="urlData" class="form-group mb-3">
 						<label for="inputDataUrl">Original Link</label>
 						<input type="url" class="form-control" id="inputDataUrl" placeholder="https://">
 					</div>
-					<div id="textData" class="form-group mb-3"><!-- hidden -->
-						<label for="inputDataText">Original Link</label>
+					<div id="textData" class="form-group mb-3 hidden">
+						<label for="inputDataText">Message</label>
 						<textarea id="inputDataText" class="form-control"></textarea>
 					</div>
-					<div id="imgData" class="form-group mb-3"><!-- hidden -->
+					<div id="imgData" class="form-group mb-3 hidden">
+						<label for="inputDataImage">Image</label><br>
+						<img src="" id="preview" class="preview"><br><br>
 						<div class="input-group">
 							<div class="input-group-prepend">
 								<span class="input-group-text">Image</span>
 							</div>
 							<div class="custom-file">
-								<input type="file" accept="image/*" class="custom-file-input" id="inputDataImage">
+								<input type="file" accept=".jpg" class="custom-file-input" id="inputDataImage">
 								<label class="custom-file-label" for="inputDataImage" id="labelImage"></label>
 							</div>
+						</div><br>
+						<div>
+							<b>Limitations</b><br><br>
+							<ul>
+								<li>Images are limited in size to ~50kB</li>
+								<li>Your IP will be banned for 10 minutes after uploading an image</li>
+								<li>You will be limited to 1 click and 1 hour</li>
+								<li>No edit/del/stats options allowed</li>
+							</ul>
 						</div>
 					</div>
-					<div class="form-group mb-3">
+					<div class="form-group mb-3 hideIfBig">
 						<label for="inputClicks">Clicks</label>
 						<div class="input-group">
 							<div class="input-group-prepend">
@@ -74,7 +85,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="form-group mb-3">
+					<div class="form-group mb-3 hideIfBig">
 						<label for="days">Expiration</label>
 						<div class="input-group mb-3">
 							<div class="input-group-prepend">
@@ -125,7 +136,7 @@
 										If you enable password protection, the user will be asked for an additional password to access the data. Note that a failed attempt will still count towards the views.
 									</div>
 								</div>
-								<div class="form-group mb-3">
+								<div class="form-group mb-3 hideIfBig">
 									<label for="optEdit">Allow Editing</label>
 									<div class="input-group mb-3">
 										<div class="input-group-prepend">
@@ -147,7 +158,7 @@
 									</div>
 									<div>You can leave the password blank to allow public deletion</div>
 								</div>
-								<div class="form-group mb-3">
+								<div class="form-group mb-3 hideIfBig">
 									<label for="optStats">Collect Statistics</label>
 									<div class="input-group mb-3">
 										<div class="input-group-prepend">

@@ -4,6 +4,9 @@ body {
 label {
 	font-weight: bold;
 }
+ul {
+	text-align: left;
+}
 #alert {
 	position: fixed;
 	bottom: 0;
@@ -13,4 +16,8 @@ label {
 }
 .hidden {
 	display: none;
+}
+.preview {
+	width: auto;
+	max-height: 50vh;
 }
