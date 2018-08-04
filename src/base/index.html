@@ -37,45 +37,45 @@
 							<div class="input-group-prepend">
 								<span class="input-group-text" id="serverUrl">rkt.example.com/#</span>
 							</div>
-							<input type="text" class="form-control" id="link">
+							<input type="text" class="form-control" id="inputLink">
 						</div>
 					</div>
 					<div class="form-group mb-3">
-						<label for="dataUrl">Original Link</label>
-						<input type="url" class="form-control" id="dataUrl" placeholder="https://">
+						<label for="inputDataUrl">Original Link</label>
+						<input type="url" class="form-control" id="inputDataUrl" placeholder="https://">
 					</div>
 					<div class="form-group mb-3">
-						<label for="clicks">Clicks</label>
+						<label for="inputClicks">Clicks</label>
 						<div class="input-group">
-							<div class="input-group-prepend" id="button-addon3">
+							<div class="input-group-prepend">
 								<button class="btn btn-outline-secondary" type="button">-10</button>
 								<button class="btn btn-outline-secondary" type="button">-1</button>
 							</div>
-							<input type="number" max=1000 min=1 id="clicks" class="form-control" style="text-align: center;" value=10>
-							<div class="input-group-append" id="button-addon4">
+							<input type="number" max=1000 min=1 id="inputClicks" class="form-control" style="text-align: center;" value=10>
+							<div class="input-group-append">
 								<button class="btn btn-outline-secondary" type="button">+1</button>
 								<button class="btn btn-outline-secondary" type="button">+10</button>
 							</div>
 						</div>
 					</div>
 					<div class="form-group mb-3">
-						<label for="hours">Expiration</label>
+						<label for="days">Expiration</label>
 						<div class="input-group mb-3">
-							<div class="input-group-prepend" id="button-addon3">
+							<div class="input-group-prepend">
 								<span class="input-group-text">Days</span>
 							</div>
-							<input type="number" id="days" max=365 class="form-control" style="text-align: center;" value=1>
-							<div class="input-group-append" id="button-addon4">
+							<input type="number" id="inputDays" max=365 class="form-control" style="text-align: center;" value=1>
+							<div class="input-group-append">
 								<button class="btn btn-outline-secondary" type="button">-1</button>
 								<button class="btn btn-outline-secondary" type="button">+1</button>
 							</div>
 						</div>
 						<div class="input-group mb-3">
-							<div class="input-group-prepend" id="button-addon3">
+							<div class="input-group-prepend">
 								<span class="input-group-text">Hours</span>
 							</div>
-							<input type="number" id="hours" min=0 max=24 class="form-control" style="text-align: center;" value=0>
-							<div class="input-group-append" id="button-addon4">
+							<input type="number" id="inputHours" min=0 max=24 class="form-control" style="text-align: center;" value=0>
+							<div class="input-group-append">
 								<button class="btn btn-outline-secondary" type="button">-1</button>
 								<button class="btn btn-outline-secondary" type="button">+1</button>
 							</div>
@@ -111,7 +111,7 @@
 										</div>
 										<input type="text" class="form-control" aria-label="Text input with checkbox" disabled>
 									</div>
-									<label for="hours">You can leave empty to allow public deletion</label>
+									<div>You can leave the password blank to allow public deletion</div>
 								</div>
 								<div class="form-group mb-3">
 									<label for="hours">Collect Statistics</label>
@@ -123,6 +123,9 @@
 										</div>
 										<input type="text" class="form-control" aria-label="Text input with checkbox" disabled>
 									</div>
+									<div>You can leave the password to allow access to the stats</div>
+									<div>Enabling Stats disables editing and forces clicks to be at least 10</div>
+									<div>To track an user, a specific 'tracking' link must be used; the user can still opt for accessing the link without tracking</div>
 								</div>
 							</div>
 						</div>
