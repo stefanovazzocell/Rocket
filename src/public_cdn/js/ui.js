@@ -152,4 +152,12 @@ $$().ready(function() {
 						 ['add1H',['Hours',+1]]]);
 	// Hide the alert if clicked
 	$$('#alert').onClick(hideAlert);
+	// Show file name when image selected
+	$$('#inputDataImage').event('change', function() {
+		var value = $$('#inputDataImage').val();
+		if (value) {
+			value = value.split(/(\\|\/)/g).pop();
+		} else value = '';
+		$$('#labelImage').html(value);
+	});
 });
