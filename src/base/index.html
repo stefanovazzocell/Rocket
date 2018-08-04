@@ -8,7 +8,7 @@
 		<title>Rocket</title>
 	</head>
 	<body>
-		<nav class="navbar fixed-top navbar-light bg-light">
+		<nav class="navbar fixed-top navbar-dark bg-dark">
 			<a class="navbar-brand" href="#">Rocket</a>
 		</nav>
 		<div class="container">
@@ -82,7 +82,53 @@
 						</div>
 					</div><br>
 					<button type="button" class="btn btn-primary btn-lg btn-block">Create</button>
+				</div><br>
+				<div class="accordion">
+					<div class="card">
+						<div class="card-header">
+							<h5 class="mb-0">
+								<button class="btn btn-link collapsed" type="button" id="optBtn">More options</button>
+							</h5>
+						</div>
+						<div id="opt" class="collapse">
+							<div class="card-body">
+								<div class="form-group mb-3">
+									<label for="hours">Allow Editing</label>
+									<div class="input-group mb-3">
+										<div class="input-group-prepend">
+											<div class="input-group-text">
+												<input type="checkbox" aria-label="Checkbox for following text input">
+											</div>
+										</div>
+										<input type="text" class="form-control" aria-label="Text input with checkbox" disabled>
+									</div><br>
+									<label for="hours">Allow Deletion</label>
+									<div class="input-group mb-3">
+										<div class="input-group-prepend">
+											<div class="input-group-text">
+												<input type="checkbox" aria-label="Checkbox for following text input">
+											</div>
+										</div>
+										<input type="text" class="form-control" aria-label="Text input with checkbox" disabled>
+									</div>
+									<label for="hours">You can leave empty to allow public deletion</label>
+								</div>
+								<div class="form-group mb-3">
+									<label for="hours">Collect Statistics</label>
+									<div class="input-group mb-3">
+										<div class="input-group-prepend">
+											<div class="input-group-text">
+												<input type="checkbox" aria-label="Checkbox for following text input">
+											</div>
+										</div>
+										<input type="text" class="form-control" aria-label="Text input with checkbox" disabled>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
+
 			</div><br>
 			<ul class="nav justify-content-center">
 				<li class="nav-item">
