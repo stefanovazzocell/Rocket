@@ -1,13 +1,22 @@
 const salt = 't6IcYm1fvwo0O+NwEo9JAqKwcn88zeqO/U1DZvCsgzK3GGa1QzOZpRNs2/sr17d7HNsIsoXhaTbjMk7sMRr5Rw==';
 
 /*
-* encrypt(data, password) - AES Encryption
+* encrypt(data, password) - AES-GCM Encryption
 *
 * @requires data String is data to be encrypted
 * @requires password String is the password to use
 */
 function encrypt(data, password) {
 	return sjcl.encrypt(password, data, {mode : 'gcm'});
+}
+/*
+* decrypt(data, password) - AES Encryption
+*
+* @requires data String is data to be encrypted
+* @requires password String is the password to use
+*/
+function decrypt(data, password) {
+	return sjcl.decrypt(password, data);
 }
 
 /*
