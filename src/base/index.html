@@ -38,7 +38,7 @@
 							<div class="input-group-prepend">
 								<span class="input-group-text" id="serverUrl">rkt.example.com/#</span>
 							</div>
-							<input type="text" class="form-control" id="inputLink">
+							<input type="text" class="form-control" id="inputLink" required>
 						</div>
 					</div>
 					<div class="form-group mb-3">
@@ -49,13 +49,13 @@
 						<label for="inputClicks">Clicks</label>
 						<div class="input-group">
 							<div class="input-group-prepend">
-								<button class="btn btn-outline-secondary" type="button">-10</button>
-								<button class="btn btn-outline-secondary" type="button">-1</button>
+								<button class="btn btn-outline-secondary" id="rem10C" type="button">-10</button>
+								<button class="btn btn-outline-secondary" id="rem1C" type="button">-1</button>
 							</div>
-							<input type="number" max=1000 min=1 id="inputClicks" class="form-control" style="text-align: center;" value=10>
+							<input type="number" max=1000 min=1 id="inputClicks" class="form-control" style="text-align: center;" value=10 required>
 							<div class="input-group-append">
-								<button class="btn btn-outline-secondary" type="button">+1</button>
-								<button class="btn btn-outline-secondary" type="button">+10</button>
+								<button class="btn btn-outline-secondary" id="add1C" type="button">+1</button>
+								<button class="btn btn-outline-secondary" id="add10C" type="button">+10</button>
 							</div>
 						</div>
 					</div>
@@ -65,24 +65,27 @@
 							<div class="input-group-prepend">
 								<span class="input-group-text">Days</span>
 							</div>
-							<input type="number" id="inputDays" max=365 class="form-control" style="text-align: center;" value=1>
+							<input type="number" id="inputDays" min=0 max=365 class="form-control" style="text-align: center;" value=1 required>
 							<div class="input-group-append">
-								<button class="btn btn-outline-secondary" type="button">-1</button>
-								<button class="btn btn-outline-secondary" type="button">+1</button>
+								<button class="btn btn-outline-secondary" id="rem1D" type="button">-1</button>
+								<button class="btn btn-outline-secondary" id="add1D" type="button">+1</button>
 							</div>
 						</div>
 						<div class="input-group mb-3">
 							<div class="input-group-prepend">
 								<span class="input-group-text">Hours</span>
 							</div>
-							<input type="number" id="inputHours" min=0 max=24 class="form-control" style="text-align: center;" value=0>
+							<input type="number" id="inputHours" min=1 max=23 class="form-control" style="text-align: center;" value=0 required>
 							<div class="input-group-append">
-								<button class="btn btn-outline-secondary" type="button">-1</button>
-								<button class="btn btn-outline-secondary" type="button">+1</button>
+								<button class="btn btn-outline-secondary" id="rem1H" type="button">-1</button>
+								<button class="btn btn-outline-secondary" id="add1H" type="button">+1</button>
 							</div>
 						</div>
 					</div><br>
-					<button type="button" class="btn btn-primary btn-lg btn-block">Create</button>
+					<button type="button" class="btn btn-primary btn-lg btn-block">Create</button><br>
+					<div>
+						By clicking 'create' you have read and agreed with the <a href="#" target="_blank">Terms of Service</a> and <a href="#" target="_blank">Privacy Policy</a>
+					</div>
 				</div><br>
 				<div class="accordion">
 					<div class="card">

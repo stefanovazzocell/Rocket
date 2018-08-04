@@ -31,6 +31,47 @@ function hideAlert() {
 }
 
 /*
+* editNum(btnId, parameters) - Changes a given input based on:
+* - given value
+* - max/min
+*
+* @requires btnId string to be a valid btn id
+* @requires parameters array to contain ['targetId', delta]
+*/
+function editNum(btnId, parameters) {
+	// Set event
+	$$('#' + btnId).onClick(function() {
+		// Is days/hours?
+		if (parameters[0] === 'Days' || parameters[0] === 'Hours') {
+			// Get days and hours
+			var deltaHours = (btnId === 'Days' ? parameters[1] * 24 : parameters[1])
+			var targetDays = $$('#inputDays');
+			var targetHours = $$('#inputHours');
+			var newVal = deltaHours + parseInt(targetHours.val()) + 24 * parseInt(targetDays.val());
+			var targetMax = targetDays.prop('max') * 24;
+			var targetMin = targetHours.prop('min');
+			// Check boundaries
+			if (newVal > targetMax) newVal = targetMax;
+			if (newVal < targetMin) newVal = targetMin;
+			// Assign correct values
+			targetDays.val(Math.floor(newVal / 24));
+			targetHours.val(newVal - 24 * Math.floor(newVal / 24));
+		} else {
+			// Get values
+			var target = $$('#input' + parameters[0]);
+			var targetMax = parseInt(target.prop('max'));
+			var targetMin = parseInt(target.prop('min'));
+			var newVal = parameters[1] + parseInt(target.val());
+			// Check boundaries
+			if (newVal > targetMax) newVal = targetMax;
+			if (newVal < targetMin) newVal = targetMin;
+			// Assign correct value
+			target.val(newVal);
+		}
+	});
+}
+
+/*
 * msg(message) - Show an alert
 *
 * @requires message string to be message to show
@@ -100,6 +141,15 @@ $$().ready(function() {
 	autoCollapse('opt');
 	// Enable checkboxes
 	applyToAll(toggleInput, [['Password',[]],['Edit',['Stats']],['Del',[]],['Stats',['Edit']]]);
+	// Enable add/remove from val
+	applyToAll(editNum, [['rem10C',['Clicks',-10]], // Clicks
+						 ['rem1C',['Clicks',-1]],
+						 ['add10C',['Clicks',+10]],
+						 ['add1C',['Clicks',+1]],
+						 ['rem1D',['Days',-24]], // Days
+						 ['add1D',['Days',+24]],
+						 ['rem1H',['Hours',-1]], // Hours
+						 ['add1H',['Hours',+1]]]);
 	// Hide the alert if clicked
 	$$('#alert').onClick(hideAlert);
 });
