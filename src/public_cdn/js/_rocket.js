@@ -47,14 +47,16 @@ $$().ready(function() {
 		$$('#preview').prop('src',data);
 	});
 	// Call get
-	var apiResponse = apiGet();
-	// Process Response
-	data = apiResponse['d'];
-	parameters = JSON.parse(apiResponse['p']);
-	type = parameters['t'];
-	password = parameters.hasOwnProperty('p');
-	// Hide welcome message
-	$$('welcome').addClass('hidden');
-	// Visualize Response
-	showResults();
+	apiGet(function(apiData) {	
+		if (apiData !== false) {
+			// Process Response
+			data = apiData['d'];
+			type = apiData['p']['t'];
+			password = apiData['p'].hasOwnProperty('p');
+			// Hide welcome message
+			$$('welcome').addClass('hidden');
+			// Visualize Response
+			showResults();
+		}
+	});
 });
