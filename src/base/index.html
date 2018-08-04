@@ -43,11 +43,11 @@
 					</div>
 					<div id="urlData" class="form-group mb-3">
 						<label for="inputDataUrl">Original Link</label>
-						<input type="url" class="form-control" id="inputDataUrl" placeholder="https://">
+						<input type="url" class="form-control" id="inputDataUrl" placeholder="https://" maxlength=2000>
 					</div>
 					<div id="textData" class="form-group mb-3 hidden">
 						<label for="inputDataText">Message</label>
-						<textarea id="inputDataText" class="form-control"></textarea>
+						<textarea id="inputDataText" class="form-control" maxlength=2000></textarea>
 					</div>
 					<div id="imgData" class="form-group mb-3 hidden">
 						<label for="inputDataImage">Image</label><br>
@@ -65,6 +65,7 @@
 							<b>Limitations</b><br><br>
 							<ul>
 								<li>Images are limited in size to ~50kB</li>
+								<li>Only *.jpg allowed</li>
 								<li>Your IP will be banned for 10 minutes after uploading an image</li>
 								<li>You will be limited to 1 click and 1 hour</li>
 								<li>No edit/del/stats options allowed</li>
