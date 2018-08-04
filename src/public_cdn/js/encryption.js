@@ -5,6 +5,7 @@ const salt = 't6IcYm1fvwo0O+NwEo9JAqKwcn88zeqO/U1DZvCsgzK3GGa1QzOZpRNs2/sr17d7HN
 *
 * @requires data String is data to be encrypted
 * @requires password String is the password to use
+* @returns String encrypted data
 */
 function encrypt(data, password) {
 	return sjcl.encrypt(password, data, {mode : 'gcm'});
@@ -14,15 +15,21 @@ function encrypt(data, password) {
 *
 * @requires data String is data to be encrypted
 * @requires password String is the password to use
+* @returns String decrypted data or false
 */
 function decrypt(data, password) {
-	return sjcl.decrypt(password, data);
+	try {
+		return sjcl.decrypt(password, data);
+	} catch (err) {
+		return false;
+	}
 }
 
 /*
 * hash(data) - PBKDF2 with the Rocket salt + sha512
 *
 * @requires data String is data to be hashed 
+* @returns String hash
 */
 function hash(data, iter = 100000) {
 	return sjcl.codec.base64.fromBits(sjcl.hash.sha512.hash(sjcl.misc.pbkdf2(data, salt, iter)));
