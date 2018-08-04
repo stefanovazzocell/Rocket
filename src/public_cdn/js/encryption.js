@@ -20,19 +20,42 @@ function hash(data, iter = 100000) {
 }
 
 /*
-* encryptData(data, parameters, link, onSuccess, onFailure, addPassword) - Encryption Utility for Rocket
+* encryptData(data, parameters, link, bigData, addPassword) - Encryption Utility for Rocket
 *
 * @requires data String is primary data to be encrypted
 * @requires parameters Object is secondary data to be encrypted
 * @requires link String is short link to use
 * @requires addPassword String is additional password or false
-* @requires onSuccess Function to call if Success
-* @requires onFailure Function to call if Failure
-* @returns Object containing 'l', 'd', 'p' parameters
+* @requires bigData Boolean true if using bigData standard
+* @returns Object containing 'l', 'd', 'p', 'bd' parameters or false if data it too much
 */
-function encryptData(data, parameters, link, onSuccess, onFailure = msg, addPassword=false) {
+function encryptData(data, parameters, link, bigData = false, addPassword=false) {
+	// Set d to be data
+	var d = data;
+	// If addPassword is available, update d and parameters
 	if (addPassword !== false) {
-		
+		d = encrypt(data, addPassword);
+		parameters['p'] = true;
 	}
-	//var data ;
+	// Set p to parameters
+	var p = JSON.stringify(parameters);
+	// Encrypt d
+	d = encrypt(d, hash(link, 100));
+	// Encrypt p
+	p = encrypt(p, hash(link, 100));
+	// Set l to be hashed link
+	var l = hash(link);
+	// Check if values are within allowed limits
+	if ((d.length > 2048 || (bigData && d.length > 55000)) || p.length > 512) {
+		// If outside of boundaries fail, return false
+		return false;
+	}
+	// Prepare output object
+	var out = { 'l': l, 'd': d, 'p': p };
+	// If bigData add flag
+	if (bigData) {
+		out['bd'] = true;
+	}
+	// Return data to success function
+	return out;
 }
