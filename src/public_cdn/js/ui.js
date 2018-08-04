@@ -67,9 +67,39 @@ function applyToAll(fn, obj) {
 	}
 }
 
+/*
+* toggleInput(id, forceClose) - set an event to toggle a password option and force closes others 
+*
+* @requires id string to be id of element
+* @requires forceClose array of string id to be closed
+*/
+function toggleInput(id, forceClose) {
+	// Get btn
+	var btn = $$('#opt' + id);
+	// Set event
+	btn.event('change', function() {
+		// Check if is checked
+		if (btn.first().checked) {
+			// Enabled
+			$$('#opt' + id + 'Pass').first().disabled = false;
+			// Close others
+			applyToAll(function(elem) {
+				$$('#opt' + elem).first().checked = false;
+				$$('#opt' + elem + 'Pass').first().disabled = true;
+			}, forceClose);
+		} else {
+			// Disable
+			$$('#opt' + id + 'Pass').first().disabled = true;
+		}
+	});
+}
+
+// When page ready start functions
 $$().ready(function() {
 	// Auto Collapse options
 	autoCollapse('opt');
+	// Enable checkboxes
+	applyToAll(toggleInput, [['Password',[]],['Edit',['Stats']],['Del',[]],['Stats',['Edit']]]);
 	// Hide the alert if clicked
 	$$('#alert').onClick(hideAlert);
 });
