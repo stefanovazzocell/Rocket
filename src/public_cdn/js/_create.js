@@ -1,3 +1,7 @@
+'use strict';
+
+var selected = 'url';
+
 // When page ready start functions
 $$().ready(function() {
 	// Auto Collapse options
@@ -56,7 +60,9 @@ $$().ready(function() {
 		$$('#labelImage').html(value);
 	});
 	// Handle tab switching
-	$$('.tabSwitch').onClick(function() {
+	$$('.tabSwitch').onClick(function(event) {
+		// Prevent default
+		event.preventDefault();
 		// Clear all
 		$$('.tabSwitch').removeClass('active');
 		applyToAll(function(elem) {
