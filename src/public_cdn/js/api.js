@@ -32,16 +32,12 @@ function apiGet(callback) {
 		// Polish link
 		link = link.substr(1);
 	}
-	// If track is undefined, define it as false
-	if (track === undefined) {
-		var track = false;
-	}
 	// Send request to server
 	$$().post(server + '/api/000/',
 		{
 			"t": "get",
 			"l": hash(link),
-			"track": track
+			"track": document.location.pathname.includes('track')
 		},
 		function (response) {
 			// Parse response
@@ -204,6 +200,65 @@ function apiOpt(callback, link) {
 			} else if (response['f'] === false) {
 				// If not found, let the user know
 				msg('Link expired');
+				// Callback
+				callback(false);
+			} else {
+				// If an error occurred, let the user know
+				if (!response['msg']) {
+					msg('An error has occurred, try again later');
+				}
+				// Callback
+				callback(false);
+			}
+		},
+		function (xhr) {
+			// If an error occurred, let the user know
+			getMsg(xhr);
+			// Callback
+			callback(false);
+		});
+}
+
+/*
+* apiStats(callback, link, passw) - Performs a OPT request
+*
+* @requires callback Function to call when completed
+* @requires link String to be the requested link
+* @requires passw String or False to be the password 
+*/
+function apiStats(callback, link, passw = false) {
+	// update passw
+	if (passw) {
+		passw = hash(passw);
+	} else {
+		passw = '';
+	}
+	// Send request to server
+	$$().post(server + '/api/000/',
+		{
+			"t": "stats",
+			"p": passw,
+			"l": hash(link)
+		},
+		function (response) {
+			// Parse response
+			response = JSON.parse(response);
+			// If there's a message, report it
+			if (response['msg']) {
+				msg(response['msg']);
+			}
+			// Check if Present
+			if (response['f'] === true && response['p'] === true) {
+				// Callback
+				callback(response['s']);
+			} else if (response['f'] === false) {
+				// If not found, let the user know
+				msg('Link expired');
+				// Callback
+				callback(false);
+			} else if (response['p'] === false) {
+				// If wrong password, let the user know
+				msg('Wrong Password');
 				// Callback
 				callback(false);
 			} else {
