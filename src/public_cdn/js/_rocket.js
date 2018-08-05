@@ -66,8 +66,12 @@ $$().ready(function() {
 		window.location.replace($$('#urlDataShow').val());
 	});
 	// Show Image
-	$$('#show').onClick(function() {
-		$$('#preview').prop('src',data);
+	var showImage = $$('#show');
+	showImage.onClick(function() {
+		showImage.addClass('hidden');
+		var preview = $$('#preview');
+		preview.removeClass('hidden');
+		preview.prop('src',data);
 	});
 	// Call get
 	apiGet(function(apiData) {	
