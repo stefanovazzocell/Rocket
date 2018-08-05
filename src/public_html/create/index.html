@@ -17,7 +17,17 @@
 				<a class="nav-item nav-link" href="../manage">Manage</a>
 			</nav><br>
 			<div id="alert" class="alert alert-warning fade hidden"></div>
-			<div class="card text-center">
+			<div id="uiNewLink" class="card text-center hidden">
+				<div class="card-body">
+					<div class="form-group mb-3">
+						<label for="inputDataUrl">Your Link</label>
+						<input type="url" class="form-control" id="newLink" readonly><br>
+					<button type="button" id="copy" class="btn btn-primary btn-lg btn-block">Copy</button><br>
+					<button type="button" id="close" class="btn btn-primary btn-lg btn-block">Close</button><br>
+					</div>
+				</div><br>
+			</div>
+			<div id="uiMakeLink" class="card text-center">
 				<div class="card-header">
 					<ul class="nav nav-tabs card-header-tabs">
 						<li class="nav-item">
