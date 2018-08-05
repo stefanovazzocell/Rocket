@@ -12,8 +12,31 @@ function showResults() {
 		// If has password, ask for it
 		$$('#addPassword').removeClass('hidden');
 	} else {
-		// Else show correct block
-		$$('#' + type + 'Data').removeClass('hidden');
+		// Load Data
+		switch (type) {
+			case 'url':
+				// Try to fix URL
+				if(!/^(?:\w+:)?\/\/([^\s\.]+\.\S{2}|localhost[\:?\d]*)\S*$/.test(data)) data = "http://" + data;
+				// Display
+				$$('#urlDataShow').val(data);
+				break;
+			case 'text':
+				// Display
+				$$('#textDataShow').val(data);
+				break;
+			case 'img':
+				// If not matching standards
+				if (data.startsWith('data:image/jpeg;base64,/') == false) {
+					// Protect the user (flush image)
+					type = false;
+					data = '';
+					// Alert the user
+					msg('The image is suspicious; for safety, it has been removed');
+				}
+				break;
+		}
+		// If possible, show correct block
+		if (type) $$('#' + type + 'Data').removeClass('hidden');
 	}
 }
 
@@ -54,9 +77,12 @@ $$().ready(function() {
 			type = apiData['p']['t'];
 			password = apiData['p'].hasOwnProperty('p');
 			// Hide welcome message
-			$$('welcome').addClass('hidden');
+			$$('#welcome').addClass('hidden');
 			// Visualize Response
 			showResults();
+		} else {
+			// Hide welcome message
+			$$('#welcome').addClass('hidden');
 		}
 	});
 });
