@@ -17,12 +17,11 @@ function getMsg(xhr, message = 'An error has occurred, try again later') {
 }
 
 /*
-* apiGet(callback, track) - Performs a GET request
+* apiGet(callback) - Performs a GET request
 *
 * @requires callback Function to call when completed
-* @requires track Boolean true if tracking enabled, false otherwise
 */
-function apiGet(callback, track = false) {
+function apiGet(callback) {
 	// Get the link from the hash
 	var link = window.location.hash;
 	// Check if link is present
@@ -38,7 +37,7 @@ function apiGet(callback, track = false) {
 		{
 			"t": "get",
 			"l": hash(link),
-			"track": track
+			"track": (track === undefined ? false : track)
 		},
 		function (response) {
 			// Parse response
@@ -91,6 +90,13 @@ function apiGet(callback, track = false) {
 * @returns Boolean true if set, false otherwise
 */
 function apiSet(callback, data, link, type, clicks, hours, passw = false, del = false, edit = false, stats = false, bigData = false) {
+	// Check if link is empty
+	if (link.length < 1) {
+		msg('You must enter a short link');
+		// Callback
+		callback(false);
+		return;
+	}
 	// Setup
 	var sOptions = {};
 	// If bigData, set policies
@@ -117,6 +123,8 @@ function apiSet(callback, data, link, type, clicks, hours, passw = false, del = 
 		// If does't match requirements exit
 		if (edit == '') {
 			msg('Edit must have a password');
+			// Callback
+			callback(false);
 			return;
 		}
 		// Add to options
@@ -155,11 +163,59 @@ function apiSet(callback, data, link, type, clicks, hours, passw = false, del = 
 			},
 			function (xhr) {
 				// If not found, let the user know
-				msg('Link expired');
+				msg('You are offline or temporarely banned');
 				// Callback
 				callback(false);
 			});
 	} else {
+		msg('There is too much data, try to input less data');
 		callback(false);
 	}
+}
+
+/*
+* apiOpt(callback, link) - Performs a OPT request
+*
+* @requires callback Function to call when completed
+*/
+function apiOpt(callback, link) {
+	// Send request to server
+	$$().post(server + '/api/000/',
+		{
+			"t": "opt",
+			"l": hash(link)
+		},
+		function (response) {
+			// Parse response
+			response = JSON.parse(response);
+			// If there's a message, report it
+			if (response['msg']) {
+				msg(response['msg']);
+			}
+			// Check if Present
+			if (response['f'] === true) {
+				// Decrypt Data
+				var out = decryptData(response['d'], response['p'], link);
+				// Callback
+				callback(out);
+			} else if (response['f'] === false) {
+				// If not found, let the user know
+				msg('Link expired');
+				// Callback
+				callback(false);
+			} else {
+				// If an error occurred, let the user know
+				if (!response['msg']) {
+					msg('An error has occurred, try again later');
+				}
+				// Callback
+				callback(false);
+			}
+		},
+		function (xhr) {
+			// If an error occurred, let the user know
+			getMsg(xhr);
+			// Callback
+			callback(false);
+		});
 }
