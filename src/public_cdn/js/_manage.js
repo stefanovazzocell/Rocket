@@ -122,7 +122,7 @@ $$().ready(function() {
 		// Resets the UI
 		resetUI();
 		// Saves the link as global
-		globalLink = $$('#inputLink').val();
+		globalLink = hash($$('#inputLink').val());
 		// Queries link info
 		apiOpt(function(options) {
 			if (options !== false) {

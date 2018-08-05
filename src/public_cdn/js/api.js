@@ -177,14 +177,14 @@ function apiSet(callback, data, link, type, clicks, hours, passw, del, edit, sta
 * apiOpt(callback, link) - Performs a OPT request
 *
 * @requires callback Function to call when completed
-* @requires link String to be the requested link
+* @requires link String to be the requested link (must be pre-hashed)
 */
 function apiOpt(callback, link) {
 	// Send request to server
 	$$().post(server + '/api/000/',
 		{
 			"t": "opt",
-			"l": hash(link)
+			"l": link
 		},
 		function (response) {
 			// Parse response
@@ -220,10 +220,10 @@ function apiOpt(callback, link) {
 }
 
 /*
-* apiStats(callback, link, passw) - Performs a OPT request
+* apiStats(callback, link, passw) - Performs a STATS request
 *
 * @requires callback Function to call when completed
-* @requires link String to be the requested link
+* @requires link String to be the requested link (must be pre-hashed)
 * @requires passw String or False to be the password 
 */
 function apiStats(callback, link, passw = false) {
@@ -238,7 +238,66 @@ function apiStats(callback, link, passw = false) {
 		{
 			"t": "stats",
 			"p": passw,
-			"l": hash(link)
+			"l": link
+		},
+		function (response) {
+			// Parse response
+			response = JSON.parse(response);
+			// If there's a message, report it
+			if (response['msg']) {
+				msg(response['msg']);
+			}
+			// Check if Present
+			if (response['f'] === true && response['p'] === true) {
+				// Callback
+				callback(response['s']);
+			} else if (response['f'] === false) {
+				// If not found, let the user know
+				msg('Link expired');
+				// Callback
+				callback(false);
+			} else if (response['p'] === false) {
+				// If wrong password, let the user know
+				msg('Wrong Password');
+				// Callback
+				callback(false);
+			} else {
+				// If an error occurred, let the user know
+				if (!response['msg']) {
+					msg('An error has occurred, try again later');
+				}
+				// Callback
+				callback(false);
+			}
+		},
+		function (xhr) {
+			// If an error occurred, let the user know
+			getMsg(xhr);
+			// Callback
+			callback(false);
+		});
+}
+
+/*
+* apiDel(callback, link, passw) - Performs a DEL request
+*
+* @requires callback Function to call when completed
+* @requires link String to be the requested link (must be pre-hashed)
+* @requires passw String or False to be the password 
+*/
+function apiDel(callback, link, passw = false) {
+	// update passw
+	if (passw) {
+		passw = hash(passw);
+	} else {
+		passw = '';
+	}
+	// Send request to server
+	$$().post(server + '/api/000/',
+		{
+			"t": "del",
+			"p": passw,
+			"l": link
 		},
 		function (response) {
 			// Parse response
