@@ -1,6 +1,8 @@
 'use strict';
 
 var selected = 'url';
+var imgRender = '';
+var baseUrl = 'http://localhost/public_html/';
 
 // When page ready start functions
 $$().ready(function() {
@@ -45,6 +47,7 @@ $$().ready(function() {
 						$$('#preview').prop('src','');
 						msg('The image is too big (' + Math.round(fileSize / 50000) + 'x the max)');
 					} else {
+						imgRender = reader.result;
 						$$('#preview').prop('src',reader.result);
 					}
 				}
@@ -78,5 +81,49 @@ $$().ready(function() {
 		// Activate
 		this.classList.add('active');
 		$$('#' + selected + 'Data').removeClass('hidden');
+	});
+	// Handle Create
+	$$('#create').onClick(function() {
+		// Hide UI while computing
+		$$('#uiMakeLink').addClass('hidden');
+		// Pick the data
+		var data = $$('#inputDataUrl').val();
+		if (selected == 'text') data = $$('#inputDataText').val();
+		if (selected == 'img') data = imgRender;
+		// Call helper
+		apiSet(function(status) {
+				if (status) {
+					// Load link
+					$$('#newLink').val(baseUrl + '#' + $$('#inputLink').val());
+					// Show UI
+					$$('#uiNewLink').removeClass('hidden');
+				} else {
+					// If faild, fall back to 'make' UI
+					$$('#uiMakeLink').removeClass('hidden');
+				}
+			},
+			data,
+			$$('#inputLink').val(),
+			selected,
+			$$('#inputClicks').val(),
+			parseInt($$('#inputHours').val()) + 24 * parseInt($$('#inputDays').val()),
+			($$('#optPassword').first().checked ? $$('#optPasswordVal').val() : false),
+			($$('#optDel').first().checked ? $$('#optDelVal').val() : false),
+			($$('#optEdit').first().checked ? $$('#optEditVal').val() : false),
+			($$('#optStats').first().checked ? $$('#optStatsVal').val() : false),
+			(selected == 'img'));		
+	});
+	// Copy link
+	$$('#copy').onClick(function() {
+		var toSelect = $$('#newLink').first();
+		toSelect.setSelectionRange(0, toSelect.value.length);
+		toSelect.select();
+		document.execCommand("copy");
+	});
+	// Close new link ui
+	$$('#close').onClick(function() {
+		// Show UI
+		$$('#uiMakeLink').removeClass('hidden');
+		$$('#uiNewLink').addClass('hidden');
 	});
 });
