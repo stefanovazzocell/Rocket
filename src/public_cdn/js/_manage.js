@@ -81,6 +81,7 @@ function showStats(values = {}) {
 function resetUI() {
 	$$('#optionsTab').addClass('hidden');
 	$$('.optTab').addClass('hidden');
+	$$('.optTab').removeClass('active');
 	$$('#statsView').addClass('hidden');
 	$$('#statsPass').addClass('hidden');
 	$$('#inputDelPass').addClass('hidden');
@@ -192,7 +193,7 @@ $$().ready(function() {
 		}, globalLink);
 	});
 	$$('#btnDelete').onClick(function() {
-		if (options.includes('_d')) {
+		if (globalOpt.includes('_d')) {
 			// Public Delete
 			apiDel(function(result) {
 				if (result) {
