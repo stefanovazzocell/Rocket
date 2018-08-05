@@ -117,13 +117,14 @@ $$().ready(function() {
 	});
 	// Handle URL Fetch
 	$$('#btnManage').onClick(function() {
+		// Disabled button
+		$$('#btnManage').addClass('hidden');
 		// Resets the UI
 		resetUI();
 		// Saves the link as global
 		globalLink = $$('#inputLink').val();
 		// Queries link info
 		apiOpt(function(options) {
-			console.log(ok)
 			if (options !== false) {
 				// Update Edit
 				if (options.includes('e')) {
@@ -146,12 +147,18 @@ $$().ready(function() {
 				if (options.includes('s')) {
 					// Allow selection of stats
 					$$('#StatsSelector').removeClass('disabled');
+					// Set active tab
+					$$('#StatsSelector').addClass('active');
 					// Show Stats tab
 					$$('#statsTab').removeClass('hidden');
 				} else if (options.includes('d')) {
+					// Set active tab
+					$$('#delSelector').addClass('active');
 					// Show Stats tab
 					$$('#delTab').removeClass('hidden');
 				} else if (options.includes('e')) {
+					// Set active tab
+					$$('#editSelector').addClass('active');
 					// Show Edit tab
 					$$('#editTab').removeClass('hidden');
 				}
@@ -160,12 +167,27 @@ $$().ready(function() {
 					// Public Stats
 					$$('#statsView').removeClass('hidden');
 					// Load Stats
-					// showStats(apiStats());
+					apiStats(function(output) {
+						if (output !== false) {
+							showStats(output);
+						}
+						// Enable button
+						$$('#btnManage').removeClass('hidden');
+					}, globalLink)
 				} else if (options.includes('s')) {
 					// Private Stats
 					$$('#statsPass').removeClass('hidden');
+					// Enable button
+					$$('#btnManage').removeClass('hidden');
+				} else {
+					// Enable button
+					$$('#btnManage').removeClass('hidden');
 				}
+				// Enabled Options
 				$$('#optionsTab').removeClass('hidden');
+			} else {
+				// Enable button
+				$$('#btnManage').removeClass('hidden');
 			}
 		}, globalLink);
 	});
