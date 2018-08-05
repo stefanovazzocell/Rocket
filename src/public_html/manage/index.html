@@ -18,28 +18,44 @@
 			</nav><br>
 			<div id="alert" class="alert alert-warning fade hidden"></div>
 			<div class="card text-center">
+				<div class="card-body">
+					<div class="form-group mb-3">
+						<label for="serverUrl">Manage link</label>
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text" id="serverUrl">rkt.example.com/#</span>
+							</div>
+							<input type="text" class="form-control" id="inputLink">
+						</div><br>
+						<button type="button" id="btnManage" class="btn btn-primary btn-lg btn-block">Manage</button><br>
+						<div>
+							By clicking 'Manage' you have read and agreed with the <a href="#" target="_blank">Terms of Service</a> and <a href="#" target="_blank">Privacy Policy</a>
+						</div>
+					</div>
+				</div>
+			</div><br><br>
+			<div class="card text-center hidden" id="optionsTab">
 				<div class="card-header">
 					<ul class="nav nav-tabs card-header-tabs">
 						<li class="nav-item">
-							<a class="nav-link tabSwitch" for="stats" href="#">Stats</a>
+							<a id="StatsSelector" class="nav-link tabSwitch disabled" for="stats" href="#">Stats</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link tabSwitch" for="del" href="#">Delete</a>
+							<a id="DelSelector" class="nav-link tabSwitch disabled" for="del" href="#">Delete</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link tabSwitch" for="edit" href="#">Edit</a>
+							<a id="EditSelector" class="nav-link tabSwitch disabled" for="edit" href="#">Edit</a>
 						</li>
 					</ul>
 				</div>
 				<div class="card-body">
-					<div id="statsTab" class="form-group mb-3 hidden">
-						<label for="inputStatsPass">Statistics</label>
-						<input type="url" class="form-control" id="inputStatsPass" placeholder="Password"><br>
-						<button type="button" id="btnFetch" class="btn btn-primary btn-lg btn-block">Fetch</button><br>
-						<div>
-							By clicking 'Fetch' you have read and agreed with the <a href="#" target="_blank">Terms of Service</a> and <a href="#" target="_blank">Privacy Policy</a>
+					<div id="statsTab" class="form-group mb-3 optTab hidden">
+						<div id="statsPass" class="hidden">
+							<label for="inputStatsPass">Statistics</label>
+							<input type="url" class="form-control" id="inputStatsPass" placeholder="Password"><br>
+							<button type="button" id="btnFetch" class="btn btn-primary btn-lg btn-block">Fetch</button>
 						</div>
-						<div id="statsView" class="">
+						<div id="statsView" class="hidden">
 							<br><br>
 							<div>
 								<label for="worldMap">Views</label><br>
@@ -48,17 +64,14 @@
 							</div>
 						</div>
 					</div>
-					<div id="delTab" class="form-group mb-3 hidden">
+					<div id="delTab" class="form-group mb-3 optTab hidden">
 						<label for="inputDelPass">Delete Link</label>
-						<input type="url" class="form-control" id="inputDelPass" placeholder="Password"><br>
-						<button type="button" id="btnDelete" class="btn btn-primary btn-lg btn-block">Delete</button><br>
-						<div>
-							By clicking 'Delete' you have read and agreed with the <a href="#" target="_blank">Terms of Service</a> and <a href="#" target="_blank">Privacy Policy</a>
-						</div>
+						<input type="url" class="form-control hidden" id="inputDelPass" placeholder="Password"><br>
+						<button type="button" id="btnDelete" class="btn btn-primary btn-lg btn-block">Delete</button>
 					</div>
-					<div id="editTab" class="form-group mb-3 hidden">
+					<div id="editTab" class="form-group mb-3 optTab hidden">
 						<label for="inputEditPass">Edit Link</label>
-						<input type="text" class="form-control" id="inputEditPass" placeholder="Password"><br>
+						<input type="password" class="form-control" id="inputEditPass" placeholder="Password"><br>
 						<div class="form-group mb-3">
 							<label for="optUrl">Change (to) Link</label>
 							<div class="input-group mb-3">
@@ -92,30 +105,10 @@
 								<input type="number" max=1000 class="form-control" id="optClicksVal" value=1 disabled>
 							</div>
 						</div>
-						<button type="button" id="btnEdit" class="btn btn-primary btn-lg btn-block">Push Edits</button><br>
-						<div>
-							By clicking 'Push Edits' you have read and agreed with the <a href="#" target="_blank">Terms of Service</a> and <a href="#" target="_blank">Privacy Policy</a>
-						</div>
-					</div>
-				</div><br><br>
-			</div><br>
-			<div class="card text-center">
-				<div class="card-body">
-					<div class="form-group mb-3">
-						<label for="serverUrl">Manage link</label>
-						<div class="input-group">
-							<div class="input-group-prepend">
-								<span class="input-group-text" id="serverUrl">rkt.example.com/#</span>
-							</div>
-							<input type="text" class="form-control" id="inputLink">
-						</div><br>
-						<button type="button" id="btnManage" class="btn btn-primary btn-lg btn-block">Manage</button><br>
-						<div>
-							By clicking 'Manage' you have read and agreed with the <a href="#" target="_blank">Terms of Service</a> and <a href="#" target="_blank">Privacy Policy</a>
-						</div>
-					</div>
+						<button type="button" id="btnEdit" class="btn btn-primary btn-lg btn-block">Push Edits</button>
+					</div><br><br><br>
 				</div>
-			</div><br><br>
+			</div>
 			<ul class="nav justify-content-center">
 				<li class="nav-item">
 					<a class="nav-link" href="#" target="_blank">Terms of Service</a>
