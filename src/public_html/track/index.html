@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="stylesheet" href="../../public_cdn/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../public_cdn/css/ui.css">
+		<title>Rocket</title>
+	</head>
+	<body>
+		<nav class="navbar fixed-top navbar-dark bg-dark">
+			<a class="navbar-brand" href="create/">Rocket</a>
+		</nav>
+		<div class="container">
+			<div id="alert" class="alert alert-warning fade hidden"></div>
+			<div class="card text-center">
+				<div class="card-body">
+					<div id="welcome">
+						We're fetching your link...
+					</div>
+					<div id="addPassword" class="hidden">
+						<label for="password">Link Password</label>
+						<input type="password" class="form-control" id="password"><br>
+						<button type="button" id="decrypt" class="btn btn-primary btn-lg btn-block">Decrypt</button>
+					</div>
+					<div id="urlData" class="hidden">
+						<label for="urlDataShow">Link</label>
+						<input type="url" class="form-control" id="urlDataShow" readonly><br>
+						<button type="button" id="visit" class="btn btn-primary btn-lg btn-block">Visit</button>
+					</div>
+					<div id="textData" class="hidden">
+						<label for="textDataShow">Message</label>
+						<textarea id="textDataShow" class="form-control" readonly></textarea>
+					</div>
+					<div id="imgData" class="hidden">
+						<label for="preview">Image</label><br>
+						<a class="nav-link" id="show" href="#">I trust the sender, show me the image</a><br>
+						<img id="preview" class="preview">
+					</div>
+				</div>
+			</div><br>
+			<ul class="nav justify-content-center">
+				<li class="nav-item">
+					<a class="nav-link" href="#" target="_blank">Terms of Service</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#" target="_blank">Privacy Policy</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="https://github.com/stefanovazzocell/" target="_blank">GitHub</a>
+				</li>
+			</ul>
+		</div>
+		<script type="text/javascript">var track = true;</script>
+		<script src="../../public_cdn/js/njq.js"></script>
+		<script src="../../public_cdn/js/sjcl.min.js"></script>
+		<script src="../../public_cdn/js/encryption.js"></script>
+		<script src="../../public_cdn/js/api.js"></script>
+		<script src="../../public_cdn/js/ui.js"></script>
+		<script src="../../public_cdn/js/_rocket.js"></script>
+	</body>
+</html>
