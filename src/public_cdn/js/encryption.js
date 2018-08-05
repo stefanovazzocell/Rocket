@@ -62,7 +62,8 @@ function encryptData(data, parameters, link, bigData = false, addPassword=false)
 	// Set l to be hashed link
 	var l = hash(link);
 	// Check if values are within allowed limits
-	if ((d.length > 2048 || (bigData && d.length > 55000)) || p.length > 512) {
+	if ((d.length > (bigData ? 55000 : 2048)) || p.length > 512) {
+		console.log('data length: ' + d.length + ', parameters length: ' + p.length);
 		// If outside of boundaries fail, return false
 		return false;
 	}
