@@ -32,12 +32,16 @@ function apiGet(callback) {
 		// Polish link
 		link = link.substr(1);
 	}
+	// If track is undefined, define it as false
+	if (track === undefined) {
+		var track = false;
+	}
 	// Send request to server
 	$$().post(server + '/api/000/',
 		{
 			"t": "get",
 			"l": hash(link),
-			"track": (track === undefined ? false : track)
+			"track": track
 		},
 		function (response) {
 			// Parse response
@@ -89,7 +93,7 @@ function apiGet(callback) {
 * @requires bigData Boolean
 * @returns Boolean true if set, false otherwise
 */
-function apiSet(callback, data, link, type, clicks, hours, passw = false, del = false, edit = false, stats = false, bigData = false) {
+function apiSet(callback, data, link, type, clicks, hours, passw, del, edit, stats, bigData = false) {
 	// Check if link is empty
 	if (link.length < 1) {
 		msg('You must enter a short link');
@@ -108,7 +112,7 @@ function apiSet(callback, data, link, type, clicks, hours, passw = false, del = 
 		stats = false;
 	}
 	// If stats, set policies
-	if (stats != false) {
+	if (stats !== false) {
 		edit = false;
 		if (clicks < 10) clicks = 10;
 		// Add to options
@@ -119,7 +123,7 @@ function apiSet(callback, data, link, type, clicks, hours, passw = false, del = 
 		}
 	}
 	// If edit, set policies
-	if (edit != false) {
+	if (edit !== false) {
 		// If does't match requirements exit
 		if (edit == '') {
 			msg('Edit must have a password');
@@ -131,7 +135,7 @@ function apiSet(callback, data, link, type, clicks, hours, passw = false, del = 
 		sOptions['e'] = hash(edit);
 	}
 	// If delete
-	if (del != false) {
+	if (del !== false) {
 		// Add to options
 		if (del === '') {
 			sOptions['d'] = '';
@@ -177,6 +181,7 @@ function apiSet(callback, data, link, type, clicks, hours, passw = false, del = 
 * apiOpt(callback, link) - Performs a OPT request
 *
 * @requires callback Function to call when completed
+* @requires link String to be the requested link
 */
 function apiOpt(callback, link) {
 	// Send request to server
@@ -194,10 +199,8 @@ function apiOpt(callback, link) {
 			}
 			// Check if Present
 			if (response['f'] === true) {
-				// Decrypt Data
-				var out = decryptData(response['d'], response['p'], link);
 				// Callback
-				callback(out);
+				callback(response['o']);
 			} else if (response['f'] === false) {
 				// If not found, let the user know
 				msg('Link expired');
