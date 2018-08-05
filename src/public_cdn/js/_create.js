@@ -94,7 +94,9 @@ $$().ready(function() {
 		apiSet(function(status) {
 				if (status) {
 					// Load link
-					$$('#newLink').val(baseUrl + '#' + $$('#inputLink').val());
+					$$('#newLink').val(baseUrl +
+						($$('#optStats').first().checked ? 'track/' : '') +
+						'#' + $$('#inputLink').val());
 					// Show UI
 					$$('#uiNewLink').removeClass('hidden');
 				} else {
