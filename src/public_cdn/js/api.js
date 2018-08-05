@@ -2,17 +2,17 @@
 var server = 'http://localhost:8080';
 
 /*
-* getMsg(xhr, default) - Gets a message from the response, otherwise shows the default
+* getMsg(xhr, message) - Gets a message from the response, otherwise shows the default
 *
 * @requires xhr to be xhr from ajax call
-* @requires default String message to show if no msg
+* @requires message String message to show if no msg
 */
-function getMsg(xhr, default = 'An error has occurred, try again later') {
+function getMsg(xhr, message = 'An error has occurred, try again later') {
 	try {
 		var response = JSON.parse(xhr.responseText);
-		msg(response['msg'] | default);
+		msg(response['msg'] | message);
 	} catch (err) {
-		msg(default);
+		msg(message);
 	}
 }
 
