@@ -191,4 +191,21 @@ $$().ready(function() {
 			}
 		}, globalLink);
 	});
+	$$('#btnDelete').onClick(function() {
+		if (options.includes('_d')) {
+			// Public Delete
+			apiDel(function(result) {
+				if (result) {
+					resetUI();
+				}
+			}, globalLink);
+		} else {
+			// Private Delete
+			apiDel(function(result) {
+				if (result) {
+					resetUI();
+				}
+			}, globalLink, $$('#inputDelPass').val())
+		}
+	});
 });

@@ -309,12 +309,12 @@ function apiDel(callback, link, passw = false) {
 			// Check if Present
 			if (response['f'] === true && response['p'] === true) {
 				// Callback
-				callback(response['s']);
+				callback(true);
 			} else if (response['f'] === false) {
 				// If not found, let the user know
 				msg('Link expired');
 				// Callback
-				callback(false);
+				callback(true); // False trigger true to reset the UI
 			} else if (response['p'] === false) {
 				// If wrong password, let the user know
 				msg('Wrong Password');
