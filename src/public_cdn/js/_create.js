@@ -107,7 +107,7 @@ $$().ready(function() {
 			data,
 			$$('#inputLink').val(),
 			selected,
-			$$('#inputClicks').val(),
+			parseInt($$('#inputClicks').val()),
 			parseInt($$('#inputHours').val()) + 24 * parseInt($$('#inputDays').val()),
 			($$('#optPassword').first().checked ? $$('#optPasswordVal').val() : false),
 			($$('#optDel').first().checked ? $$('#optDelVal').val() : false),
