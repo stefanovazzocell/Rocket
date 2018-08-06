@@ -336,3 +336,80 @@ function apiDel(callback, link, passw = false) {
 			callback(false);
 		});
 }
+
+/*
+* apiEdit(callback, editPass, link, rawLink, dataPass, data, parameters, clicks) - Performs a EDIT request
+*
+* @requires callback Function to call when completed
+* @requires editPass String or False to be the password
+* @requires link String to be the requested link (must be pre-hashed)
+* @requires rawLink String to be the requested link
+* @requires dataPass String or False to be the password
+* @requires data String or False is data to be updated
+* @requires clicks Numver or False is clicks to be updated
+*/
+function apiEdit(callback, editPass, link, rawLink, dataPass, data, parameters, clicks) {
+	// update editPass
+	editPass = hash(editPass);
+	// Preparing editing options
+	var edit = {};
+	// Run checks
+	if (data === false && clicks === false) {
+		msg('At least one of link/text or clicks should be changed');
+		callback(false);
+		return;
+	}
+	if (clicks !== false) {
+		edit['c'] = clicks;
+		if (clicks < 1) edit['c'] = 1;
+		if (clicks > 1000) edit['c'] = 1000;
+	}
+	if (data !== false) {
+		var returned = encryptData(data, parameters, rawLink, false, dataPass);
+		if (returned === false) {
+			// failed
+			callback(false);
+			return;
+		}
+		// Add data
+		edit['d'] = returned['d'];
+		edit['p'] = returned['p'];
+	}
+	// Send request to server
+	$$().post(server + '/api/000/',
+		{
+			"t": "edit",
+			"p": editPass,
+			"l": link,
+			"e": edit
+		},
+		function (response) {
+			// Parse response
+			response = JSON.parse(response);
+			// If there's a message, report it
+			if (response['msg']) {
+				msg(response['msg']);
+			}
+			// Check if Present
+			if (response['f'] === true && response['p'] === true) {
+				// Callback
+				callback(true);
+			} else if (response['f'] === false || response['p'] === false) {
+				// Callback
+				callback(false);
+			} else {
+				// If an error occurred, let the user know
+				if (!response['msg']) {
+					msg('An error has occurred, try again later');
+				}
+				// Callback
+				callback(false);
+			}
+		},
+		function (xhr) {
+			// If an error occurred, let the user know
+			getMsg(xhr);
+			// Callback
+			callback(false);
+		});
+}
