@@ -52,7 +52,7 @@
 					<div id="statsTab" class="form-group mb-3 optTab hidden">
 						<div id="statsPass" class="hidden">
 							<label for="inputStatsPass">Statistics</label>
-							<input type="url" class="form-control" id="inputStatsPass" placeholder="Password"><br>
+							<input type="url" class="form-control" id="inputStatsPass" placeholder="Password" minlength=1 required><br>
 							<button type="button" id="btnFetch" class="btn btn-primary btn-lg btn-block">Fetch</button><br><br>
 						</div>
 						<div id="statsView" class="hidden">
@@ -65,12 +65,12 @@
 					</div>
 					<div id="delTab" class="form-group mb-3 optTab hidden">
 						<label for="inputDelPass">Delete Link</label>
-						<input type="url" class="form-control hidden" id="inputDelPass" placeholder="Password"><br>
+						<input type="url" class="form-control hidden" id="inputDelPass" placeholder="Password" minlength=1 required><br>
 						<button type="button" id="btnDelete" class="btn btn-primary btn-lg btn-block">Delete</button>
 					</div>
 					<div id="editTab" class="form-group mb-3 optTab hidden">
 						<label for="inputEditPass">Edit Link</label>
-						<input type="password" class="form-control" id="inputEditPass" placeholder="Password"><br>
+						<input type="password" minlength=1 class="form-control" id="inputEditPass" placeholder="Password" required><br>
 						<div class="form-group mb-3">
 							<label for="optUrl">Change (to) Link</label>
 							<div class="input-group mb-3">
@@ -83,7 +83,7 @@
 							</div>
 						</div>
 						<div class="form-group mb-3">
-							<label for="optLink">Change (to) Text</label>
+							<label for="optText">Change (to) Text</label>
 							<div class="input-group mb-3">
 								<div class="input-group-prepend">
 									<div class="input-group-text">
@@ -91,6 +91,17 @@
 									</div>
 								</div>
 								<textarea maxlength=2000 class="form-control" id="optTextVal" placeholder="" disabled></textarea>
+							</div>
+						</div>
+						<div class="form-group mb-3">
+							<label for="optPass">Password for new link/text</label>
+							<div class="input-group mb-3">
+								<div class="input-group-prepend">
+									<div class="input-group-text">
+										<input type="checkbox" id="optPass">
+									</div>
+								</div>
+								<input type="text" minlength=1 class="form-control" id="optPassVal" disabled>
 							</div>
 						</div>
 						<div class="form-group mb-3">
