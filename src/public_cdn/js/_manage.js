@@ -2,6 +2,7 @@
 
 var selected = 'stats';
 var globalLink = '';
+var globalLinkRaw = '';
 var globalOpt = [];
 
 // Country Codes -> Names
@@ -91,13 +92,14 @@ function resetUI() {
 	$$('input[type=url]').val('');
 	$$('textarea').val('');
 	globalLink = '';
+	globalLinkRaw = '';
 	globalOpt = [];
 }
 
 // When page ready start functions
 $$().ready(function() {
 	// Enable checkboxes
-	applyToAll(toggleInput, [['Clicks',[]],['Url',['Text']],['Text',['Url']]]);
+	applyToAll(toggleInput, [['Clicks',[]],['Url',['Text']],['Text',['Url']],['Pass',[]]]);
 	// Handle tab switching
 	$$('.tabSwitch').onClick(function(event) {
 		// Prevent default
@@ -123,7 +125,8 @@ $$().ready(function() {
 		// Resets the UI
 		resetUI();
 		// Saves the link as global
-		globalLink = hash($$('#inputLink').val());
+		globalLinkRaw = $$('#inputLink').val();
+		globalLink = hash(globalLinkRaw);
 		// Queries link info
 		apiOpt(function(options) {
 			if (options !== false) {
@@ -154,12 +157,12 @@ $$().ready(function() {
 					$$('#statsTab').removeClass('hidden');
 				} else if (options.includes('d')) {
 					// Set active tab
-					$$('#delSelector').addClass('active');
+					$$('#DelSelector').addClass('active');
 					// Show Stats tab
 					$$('#delTab').removeClass('hidden');
 				} else if (options.includes('e')) {
 					// Set active tab
-					$$('#editSelector').addClass('active');
+					$$('#EditSelector').addClass('active');
 					// Show Edit tab
 					$$('#editTab').removeClass('hidden');
 				}
@@ -208,5 +211,35 @@ $$().ready(function() {
 				}
 			}, globalLink, $$('#inputDelPass').val())
 		}
+	});
+	$$('#btnEdit').onClick(function() {
+		// Hide btn
+		$$('#btnEdit').addClass('hidden');
+		// Set starting value
+		var data = ($$('#optUrl').first().checked || $$('#optText').first().checked);
+		var parameters = data;
+		if (data) {
+			if ($$('#optUrl').first().checked) {
+				// It's a url
+				data = $$('#optUrlVal').val();
+				parameters = { 't': 'url' };
+			} else {
+				// It's a text
+				data = $$('#optTextVal').val();
+				parameters = { 't': 'text' };
+			}
+		}
+		var dataPass = (data && $$('#optPass').first().checked);
+		if (dataPass) {
+			dataPass = $$('#optPassVal').val();
+		}
+		var clicks = $$('#optClicks').first().checked;
+		if (clicks) {
+			clicks = parseInt($$('#optClicksVal').val());
+		}
+		apiEdit(function() {
+			// Show btn
+			$$('#btnEdit').removeClass('hidden');
+		}, $$('#inputEditPass').val(), globalLink, globalLinkRaw, dataPass, data, parameters, clicks)
 	});
 });
