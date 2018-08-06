@@ -45,7 +45,7 @@ function hash(data, iter = 100000) {
 * @requires bigData Boolean true if using bigData standard
 * @returns Object containing 'l', 'd', 'p', 'bd' parameters or false if data it too much
 */
-function encryptData(data, parameters, link, bigData = false, addPassword=false) {
+function encryptData(data, parameters, link, bigData = false, addPassword = false) {
 	// Set d to be data
 	var d = data;
 	// If addPassword is available, update d and parameters
@@ -63,7 +63,6 @@ function encryptData(data, parameters, link, bigData = false, addPassword=false)
 	var l = hash(link);
 	// Check if values are within allowed limits
 	if ((d.length > (bigData ? 55000 : 2048)) || p.length > 512) {
-		console.log('data length: ' + d.length + ', parameters length: ' + p.length);
 		// If outside of boundaries fail, return false
 		return false;
 	}
