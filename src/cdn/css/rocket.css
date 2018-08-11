@@ -1,0 +1,17 @@
+body {
+	padding-top: 70px;
+}
+#alert {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	text-align: center;
+	font-weight: bold;
+}
+.fixed {
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+}
