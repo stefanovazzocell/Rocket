@@ -139,14 +139,10 @@ $$().ready(function() {
 		// Disable/Enable based on if this is checked
 		var target = this.getAttribute('for');
 		if (target !== null) $$('#' + target).first().disabled = !this.checked;
-		if (target === 'edit' && $$('#optStats').first().checked) $$('#optStats').select();
-		if (target === 'stats') {
-			if (this.checked) {
-				$$('#clicks').first().min = 10;
-			} else {
-				$$('#clicks').first().min = 1;
-			}
-			if ($$('#optEdit').first().checked) $$('#optEdit').select();
+		if (this.checked) {
+			if (target === 'url' && $$('#optText').first().checked) $$('#optText').select();
+			if (target === 'text' && $$('#optUrl').first().checked) $$('#optUrl').select();
+			if (target === 'password' && !$$('#optUrl').first().checked && !$$('#optText').first().checked) $$('#optUrl').select();
 		}
 	});
 	// Get stats with password
@@ -157,7 +153,7 @@ $$().ready(function() {
 	// Delete Link
 	$$('form[for=delete]').event('submit', function(event) {
 		event.preventDefault();
-		$$('#body').removeClass('d');
+		$$('#body').addClass('d');
 		apiDel(function(deleted) {
 			if (deleted) {
 				// Deleted Successfully
@@ -165,6 +161,35 @@ $$().ready(function() {
 			}
 			$$('#body').removeClass('d');
 		}, hashedLink, ($$('#delete').first().disabled ? false : $$('#delete').val()));
+	});
+	// Get stats with password
+	$$('form[for=edit]').event('submit', function(event) {
+		event.preventDefault();
+		$$('#body').addClass('d');
+		var data = ($$('#optUrl').first().checked || $$('#optText').first().checked);
+		var parameters = data;
+		if (data) {
+			if ($$('#optUrl').first().checked) {
+				// It's a url
+				data = $$('#url').val();
+				parameters = { 't': 'url' };
+			} else {
+				// It's a text
+				data = $$('#text').val();
+				parameters = { 't': 'text' };
+			}
+		}
+		var dataPass = (data && $$('#optPassword').first().checked);
+		if (dataPass) {
+			dataPass = $$('#password').val();
+		}
+		var clicks = $$('#optClicks').first().checked;
+		if (clicks) {
+			clicks = parseInt($$('#clicks').val());
+		}
+		apiEdit(function() {
+			$$('#body').removeClass('d');
+		}, $$('#edit').val(), hashedLink, link, dataPass, data, parameters, clicks);
 	});
 	// Load options
 	$$('form[for=link]').event('submit', function(event) {
@@ -216,4 +241,8 @@ $$().ready(function() {
 		$$('#link').val(link);
 		$$('#load').select();
 	}
+	// Disable uneccessary inputs
+	$$('.disOnStart').each(function(toDisable) {
+		toDisable.disabled = true;
+	});
 });
