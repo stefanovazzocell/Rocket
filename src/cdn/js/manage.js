@@ -82,6 +82,17 @@ function showStats(values = {}) {
 }
 
 /*
+* resetUI() - Reset UI
+*/
+function resetUI() {
+	$$('.tabf').addClass('d');
+	$$('#stats-tab, #edit-tab, #delete-tab, form[for=stats], .view, #delete').addClass('h');
+	$$('.tabf').addClass('btn--gray');
+	$$('.tabf').removeClass('btn--blue');
+	$$('#delete').first().disabled = true;
+}
+
+/*
 * getStats(passwd) - gets and loads the stats
 *
 * @requires passwd String with password 
@@ -142,16 +153,25 @@ $$().ready(function() {
 	$$('form[for=stats]').event('submit', function(event) {
 		event.preventDefault();
 		getStats($$('#stats').val());
-	})
+	});
+	// Delete Link
+	$$('form[for=delete]').event('submit', function(event) {
+		event.preventDefault();
+		$$('#body').removeClass('d');
+		apiDel(function(deleted) {
+			if (deleted) {
+				// Deleted Successfully
+				resetUI();
+			}
+			$$('#body').removeClass('d');
+		}, hashedLink, ($$('#delete').first().disabled ? false : $$('#delete').val()));
+	});
 	// Load options
 	$$('form[for=link]').event('submit', function(event) {
 		event.preventDefault();
 		// Lock && Reset UI
-		$$('#body, .tabf').addClass('d');
-		$$('#stats-tab, #edit-tab, #delete-tab, form[for=stats], .view, #delete').addClass('h');
-		$$('.tabf').addClass('btn--gray');
-		$$('.tabf').removeClass('btn--blue');
-		$$('#delete').first().disabled = true;
+		$$('#body').addClass('d');
+		resetUI();
 		// Prepare link
 		link = $$('#link').val();
 		hashedLink = hash(link);
