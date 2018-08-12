@@ -21,7 +21,8 @@ input[type="file"] {
 	margin: auto;
 }
 .h {
-	display: none;
+	visibility: hidden;
+	height: 0;
 }
 .fixed {
 	position: fixed;
