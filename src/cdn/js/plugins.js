@@ -291,7 +291,7 @@ function apiSet(callback, data, link, type, clicks, hours, passw, del, edit, sta
 		param['e'] = hours;
 		param['o'] = sOptions;
 		// Query DB
-		$$().post("http://localhost:8080/api/000/",
+		$$().post(server + '/api/000/',
 			param,
 			function (response) {
 				// Parse response
