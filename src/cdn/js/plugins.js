@@ -4,6 +4,42 @@ const salt = 't6IcYm1fvwo0O+NwEo9JAqKwcn88zeqO/U1DZvCsgzK3GGa1QzOZpRNs2/sr17d7HN
 var server = 'http://localhost:8080';
 var baseUrl = 'http://localhost/#';
 
+/* Utilities Plugin */
+
+var alertTimeout = false;
+
+/*
+* closeAlert() - Hides an alert and stops the timer
+*/
+function closeAlert() {
+	// Remove previous timer
+	clearTimeout(alertTimeout);
+	alertTimeout = false;
+	// Hide the alert
+	$$('#alert').addClass('h');
+}
+
+/*
+* msg(message, priority) - Shows a message
+*
+* @requires message String to be message to be shown
+* @requires priority Boolean is true if overwrites previous alert, false otherwise
+*/
+function msg(message, priority = true) {
+	// Logs to console
+	console.warn(message);
+	if (priority || !alertTimeout) {
+		// Reset Previous alerts
+		closeAlert();
+		// Add the message
+		$$('#alert').html(message);
+		// Set timeout
+		alertTimeout = setTimeout(closeAlert, 5000);
+		// Show the alert
+		$$('#alert').removeClass('h');
+	}
+}
+
 /* Encryption Plugin */
 
 /*
@@ -133,7 +169,7 @@ function apiGet(callback) {
 	// Check if link is present
 	if (!link) {
 		// If link not available, redirect
-		window.location.replace('/create');
+		window.location.replace('create/');
 	} else {
 		// Polish link
 		link = link.substr(1);
@@ -160,7 +196,7 @@ function apiGet(callback) {
 				callback(out);
 			} else if (response['f'] === false) {
 				// If not found, let the user know
-				msg('Link expired');
+				msg('Link expired', false);
 				// Callback
 				callback(false);
 			} else {
@@ -269,7 +305,7 @@ function apiSet(callback, data, link, type, clicks, hours, passw, del, edit, sta
 			},
 			function (xhr) {
 				// If not found, let the user know
-				msg('You are offline or temporarely banned');
+				getMsg(xhr, 'You are offline or temporarely banned');
 				// Callback
 				callback(false);
 			});
@@ -305,14 +341,12 @@ function apiOpt(callback, link) {
 				callback(response['o']);
 			} else if (response['f'] === false) {
 				// If not found, let the user know
-				msg('Link expired');
+				msg('Link expired', false);
 				// Callback
 				callback(false);
 			} else {
 				// If an error occurred, let the user know
-				if (!response['msg']) {
-					msg('An error has occurred, try again later');
-				}
+				msg('An error has occurred, try again later', false);
 				// Callback
 				callback(false);
 			}
@@ -359,12 +393,12 @@ function apiStats(callback, link, passw = false) {
 				callback(response['s']);
 			} else if (response['f'] === false) {
 				// If not found, let the user know
-				msg('Link expired');
+				msg('Link expired', false);
 				// Callback
 				callback(false);
 			} else if (response['p'] === false) {
 				// If wrong password, let the user know
-				msg('Wrong Password');
+				msg('Wrong Password', false);
 				// Callback
 				callback(false);
 			} else {
@@ -418,19 +452,17 @@ function apiDel(callback, link, passw = false) {
 				callback(true);
 			} else if (response['f'] === false) {
 				// If not found, let the user know
-				msg('Link expired');
+				msg('Link expired', false);
 				// Callback
 				callback(true); // False trigger true to reset the UI
 			} else if (response['p'] === false) {
 				// If wrong password, let the user know
-				msg('Wrong Password');
+				msg('Wrong Password', false);
 				// Callback
 				callback(false);
 			} else {
 				// If an error occurred, let the user know
-				if (!response['msg']) {
-					msg('An error has occurred, try again later');
-				}
+				msg('An error has occurred, try again later', false);
 				// Callback
 				callback(false);
 			}
@@ -505,9 +537,7 @@ function apiEdit(callback, editPass, link, rawLink, dataPass, data, parameters, 
 				callback(false);
 			} else {
 				// If an error occurred, let the user know
-				if (!response['msg']) {
-					msg('An error has occurred, try again later');
-				}
+				msg('An error has occurred, try again later', false);
 				// Callback
 				callback(false);
 			}

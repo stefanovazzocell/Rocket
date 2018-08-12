@@ -2,18 +2,6 @@
 
 var type = '';
 var imgRender = '';
-var alertTimeout = false;
-
-/*
-* closeAlert() - Hides an alert and stops the timer
-*/
-function closeAlert() {
-	// Remove previous timer
-	clearTimeout(alertTimeout);
-	alertTimeout = false;
-	// Hide the alert
-	$$('#alert').addClass('h');
-}
 
 /*
 * randomString(length) - Generates a random string of given length
@@ -41,24 +29,6 @@ function randomString(length=10) {
 	}
 
 	return out;
-}
-
-/*
-* msg(message) - Shows a message
-*
-* @requires message String to be message to be shown
-*/
-function msg(message) {
-	// Logs to console
-	console.warn(message);
-	// Reset Previous alerts
-	closeAlert();
-	// Add the message
-	$$('#alert').html(message);
-	// Set timeout
-	alertTimeout = setTimeout(closeAlert, 5000);
-	// Show the alert
-	$$('#alert').removeClass('h');
 }
 
 /*
@@ -274,7 +244,7 @@ $$().ready(function() {
 					$$('.ready').removeClass('h');
 				} else {
 					// If no error logged, ask for new link
-					if (!alertTimeout) msg('Link taken, try another link');
+					msg('Link taken, try another link', false);
 					// If faild, fall back to main UI
 					$$('form').removeClass('h');
 				}
@@ -320,5 +290,5 @@ $$().ready(function() {
 	// Disable uneccessary inputs
 	$$('.disOnStart').each(function(toDisable) {
 		toDisable.disabled = true;
-	})
+	});
 });
