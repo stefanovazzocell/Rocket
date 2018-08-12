@@ -1,5 +1,5 @@
 body {
-	padding-top: 60px;
+	padding-top: 70px;
 }
 label {
 	font-weight: bold;
@@ -29,6 +29,7 @@ input[type="file"] {
 	top: 0;
 	right: 0;
 	left: 0;
+	cursor: pointer;
 }
 .px30 {
 	width: 30px;
