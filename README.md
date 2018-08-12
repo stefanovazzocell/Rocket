@@ -18,7 +18,9 @@ You are welcome to try to improve the code. For any question, contact stefanovaz
 ## License
 
 This code is distributed under the Apache 2.0 license.
-NJQ (Apache 2.0) and SJCL (GNU GPL 2.0) are used in this program.
+[NJQ](https://github.com/stefanovazzocell/NJQ) (Apache 2.0), [Furtive](https://github.com/johno/furtive) (MIT), and [SJCL](https://github.com/bitwiseshiftleft/sjcl) (GNU GPL 2.0) are used in this program.
+
+
 
 ## Versions
 Rocket follows tentatively [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0.0.html).
