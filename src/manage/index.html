@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<title>Rocket - Manage Link</title>
+		<link rel="stylesheet" type="text/css" href="/cdn/css/furtive.min.css">
+		<link rel="stylesheet" type="text/css" href="/cdn/css/rocket.css">
+	</head>
+	<body class="txt--center">
+		<!-- Navbar -->
+		<div class="fixed bg--off-white brdr--light-gray bold p1">Rocket</div>
+		<!-- Head options -->
+		<div class="grd measure p1">
+			<div class="grd-row">
+				<a href="../create/" class="btn grd-row-col-3-6 btn--gray">Create</a>
+				<div class="px30"></div>
+				<a href="#" class="btn grd-row-col-3-6 btn--blue" onclick="return false;">Manage</a>
+			</div>
+		</div>
+		<!-- Body -->
+		<div id="body" class="measure brdr--dark-gray">
+			<!-- Short Link -->
+			<form action="#" for="link" class="bg--light-gray p2">
+				<label for="link">rkt.example.com/#</label>
+				<input type="text" id="link" pattern="^([-?/:@._~!$&'()*+,;=a-zA-Z0-9]|%[0-9a-fA-F]{2})*$" placeholder="Short link" minlength=1 required>
+				<input type="submit" id="load" value="Load options" class="btn--blue">
+			</form>
+			<!-- Tab Navigation -->
+			<div class="bg--mid-gray grd p1">
+				<div class="grd-row">
+					<a href="#" class="btn grd-row-col-2-6 btn--gray btn--s tabf d" for="stats">Stats</a>
+					<div class="px30"></div>
+					<a href="#" class="btn grd-row-col-2-6 btn--gray btn--s tabf d" for="edit">Edit</a>
+					<div class="px30"></div>
+					<a href="#" class="btn grd-row-col-2-6 btn--gray btn--s tabf d" for="delete">Delete</a>
+				</div>
+			</div>
+			<!-- Data -->
+			<div class="bg--light-gray brdr--mid-gray p2 tabt">
+				<div id="stats-tab" class="h">
+					<form for="stats" class="pass h">
+						<label for="stats">Stats Password</label>
+						<input type="password" id="stats" minlength=1 required>
+						<input type="submit" value="Load Stats" class="btn--blue">
+					</form>
+					<div class="view h">
+						<label for="preview">Views</label><br>
+						<embed id="preview" type="image/svg+xml" src="/cdn/img/world.svg"><br><br>
+						<table style="display: inline-block;">
+							<thead>
+								<tr>
+									<th>Views</th>
+									<th>Country</th>
+								</tr>
+							</thead>
+							<tbody></tbody>
+						</table>
+					</div>
+				</div>
+				<div id="edit-tab" class="h">
+					<form for="edit" class="pass">
+						<label for="edit">Edit Link</label>
+						<input type="password" id="edit" minlength=1 required>
+						<input type="submit" value="Edit" class="btn--blue">
+					</form>
+				</div>
+				<div id="delete-tab" class="h">
+					<form for="delete" class="pass">
+						<label for="delete">Delete Link</label>
+						<input type="password" class="h" id="delete" minlength=1 required>
+						<input type="submit" value="Delete" class="btn--blue">
+					</form>
+				</div>
+			</div>
+		</div><br>
+		<!-- Footer -->
+		<div class="grd measure p1 brdr--dark-gray">
+			<div class="grd-row">
+				<a class="grd-row-col-2-6" href="https://github.com/stefanovazzocell/" target="_blank">GitHub</a>
+				<a class="grd-row-col-2-6" href="#" target="_blank">Terms of Service</a>
+				<a class="grd-row-col-2-6" href="#" target="_blank">Privacy Policy</a>
+			</div>
+		</div><br>
+		<!-- Alert shown here -->
+		<div id="alert" class="p1 bg--red fnt--white h"></div>
+		<!-- Extra JS -->
+		<script src="/cdn/js/njq.js"></script>
+		<script src="/cdn/js/sjcl.min.js"></script>
+		<script src="/cdn/js/plugins.js"></script>
+		<script src="/cdn/js/manage.js"></script>
+	</body>
+	</html>
