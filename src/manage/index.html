@@ -15,7 +15,7 @@
 	</head>
 	<body class="txt--center">
 		<!-- Navbar -->
-		<div class="fixed bg--off-white brdr--light-gray bold p1">Rocket</div>
+		<div class="fixed bg--off-white brdr--light-gray bold p1" onclick="window.location.href = 'create/'">Rocket</div>
 		<!-- Head options -->
 		<div class="grd measure p1">
 			<div class="grd-row">
@@ -67,7 +67,24 @@
 				<div id="edit-tab" class="h">
 					<form for="edit" class="pass">
 						<label for="edit">Edit Link</label>
-						<input type="password" id="edit" minlength=1 required>
+						<input type="password" id="edit" minlength=1 required><br>
+						<!-- URL -->
+						<input type="checkbox" id="optUrl" for="url">
+						<label for="optUrl">Set to URL</label>
+						<input type="url" class="disOnStart" id="url" placeholder="Original Link" minlength=1 maxlength=2000 required>
+						<!-- Text -->
+						<input type="checkbox" id="optText" for="text">
+						<label for="optText">Set to Text</label>
+						<textarea class="disOnStart" id="text" rows=3 minlength=1 maxlength=2000 required></textarea><br>
+						<!-- Password -->
+						<input type="checkbox" id="optPassword" for="password">
+						<label for="optPassword">Password protect</label>
+						<input type="text" class="disOnStart" id="password" minlength=1 required><br>
+						<!-- Password -->
+						<input type="checkbox" id="optClicks" for="clicks">
+						<label for="optClicks">Change max remaining views</label>
+						<input type="number" class="disOnStart" id="clicks" max=1000 min=1 value=10 required><br>
+						<!-- Submit -->
 						<input type="submit" value="Edit" class="btn--blue">
 					</form>
 				</div>
