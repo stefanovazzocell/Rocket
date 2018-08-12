@@ -20,10 +20,6 @@ input[type="file"] {
 	width: 250px;
 	margin: auto;
 }
-.h {
-	visibility: hidden;
-	height: 0;
-}
 .d {
 	pointer-events: none;
 	color: #aaa;
