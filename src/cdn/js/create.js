@@ -275,7 +275,7 @@ $$().ready(function() {
 		$$('#link').val(randomString());
 		// Show UI
 		$$('form').removeClass('h');
-		$$('.final').addClass('h');
+		$$('.ready').addClass('h');
 	});
 	// Generate random passwords
 	$$('.random').onClick(function(e) {
