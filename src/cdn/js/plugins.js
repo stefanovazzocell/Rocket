@@ -1,8 +1,9 @@
 // A randomly generated salt
 const salt = 't6IcYm1fvwo0O+NwEo9JAqKwcn88zeqO/U1DZvCsgzK3GGa1QzOZpRNs2/sr17d7HNsIsoXhaTbjMk7sMRr5Rw==';
 // The server address
-var server = 'http://localhost:8080';
-var baseUrl = 'http://localhost/#';
+var autolocation = window.location.protocol + '//' + window.location.hostname;
+var server = autolocation + ':8080';
+var baseUrl = autolocation + '/#';
 
 /* Utilities Plugin */
 
