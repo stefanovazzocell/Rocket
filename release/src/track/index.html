@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Rocket</title>
+<style type=text/css>.h{display:none}</style>
+<link rel=stylesheet type=text/css href=/cdn/css/style.css>
+</head>
+<body class=txt--center>
+<div class="fixed bg--off-white brdr--light-gray bold p1" onclick="window.location.href='../create/'">Rocket</div>
+<div id=body class="measure bg--off-white brdr--dark-gray p2">
+<div id=isInit>
+Loading your data...
+</div>
+<form class=h>
+<label for=password>Password</label>
+<input type=password id=password minlength=1 required>
+<input type=submit value=Decrypt class=btn--blue>
+</form>
+<div id=isUrl class=h>
+<input type=url id=url readonly>
+<button class="btn btn--s" id=copy>Copy</button>
+</div>
+<div id=isText class=h>
+<textarea id=text readonly rows=3></textarea>
+</div>
+<div id=isImg class=h>
+<div id=warning>
+<label>Warning</label>
+<p>
+Somebody shared what appears to be an image with you.<br>
+We try our best to protect you, but we can't be certain that the image is not malicious.<br>
+Do you really trust the person who gave you this link?
+</p>
+<button class="btn btn--red" id=show>Yes, show me the image</button>
+</div>
+<img id=preview src class=h>
+</div>
+</div><br>
+<div class="grd measure p1 brdr--dark-gray">
+<div class=grd-row>
+<a class=grd-row-col-2-6 href=https://github.com/stefanovazzocell/ target=_blank>GitHub</a>
+<a class=grd-row-col-2-6 href=../docs/terms target=_blank>Terms of Service</a>
+<a class=grd-row-col-2-6 href=../docs/privacy target=_blank>Privacy Policy</a>
+</div>
+</div><br>
+<div id=alert class="p1 bg--red fnt--white h"></div>
+<script src=/cdn/js/helpers.js></script>
+<script src=/cdn/js/visit.js></script>
+</body>
+</html>

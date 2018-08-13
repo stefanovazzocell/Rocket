@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Rocket</title>
+<style type=text/css>.h{display:none}</style>
+<link rel=stylesheet type=text/css href=/cdn/css/style.css>
+</head>
+<body class=txt--center>
+<div class="fixed bg--off-white brdr--light-gray bold p1" onclick="window.location.href='../create'">Rocket</div>
+<div class="grd measure p1">
+<div class=grd-row>
+<a href=# class="btn grd-row-col-3-6 btn--blue" onclick="return false">Create</a>
+<div class=px30></div>
+<a href=../manage/ class="btn grd-row-col-3-6 btn--gray">Manage</a>
+</div>
+</div>
+<form action=# class="measure brdr--dark-gray">
+<div class="bg--light-gray p2">
+<label for=link>rkt.example.com/#</label>
+<input type=text id=link pattern="^([-?/:@._~!$&'()*+,;=a-zA-Z0-9]|%[0-9a-fA-F]{2})*$" placeholder="Short link" minlength=1 required>
+<span class=bold>Allowed symbols:</span> <code>?/:@-._~!$&'()*+,;=</code>
+</div>
+<div class="bg--mid-gray grd p1">
+<div class=grd-row>
+<a href=# class="btn grd-row-col-2-6 btn--blue btn--s tabf" for=url>Link</a>
+<div class=px30></div>
+<a href=# class="btn grd-row-col-2-6 btn--gray btn--s tabf" for=text>Text</a>
+<div class=px30></div>
+<a href=# class="btn grd-row-col-2-6 btn--gray btn--s tabf" for=img>Image</a>
+</div>
+</div>
+<div class="bg--light-gray brdr--mid-gray p2 tabt">
+<div id=url-tab>
+<label for=url>Your link</label>
+<input type=url id=url placeholder="Original Link" minlength=1 maxlength=2000 required>
+</div>
+<div id=text-tab class=h>
+<label for=text>Your message</label>
+<textarea id=text rows=3 minlength=1 maxlength=2000 required></textarea>
+</div>
+<div id=img-tab class=h>
+<img src id=preview class=brdr--dark-gray><br>
+<label for=img>Your image</label>
+<input type=file id=img accept=image/* class=brdr--dark-gray placeholder="Original Link" required><br>
+<div>
+The image size will be adjusted automatically<br>
+<span class=bold>Restrictions</span><br>
+Images are limited in size to ~30kB<br>
+Only *.jpg allowed<br>
+Your IP might be banned for 10 minutes after uploading an image<br>
+Your link will be limited to 1 click and 1 hour<br>
+edit/delete/stats options not allowed
+</div>
+</div>
+</div>
+<div class="bg--off-white p2 noImage">
+<label for=clicks>Maximum Views</label>
+<input type=number id=clicks max=1000 min=1 value=10 required>
+<div class="grd p1">
+<div class="grd-row bold">
+<a href=# class="btn btn--s grd-row-col-3-6 change" data-target=clicks data-delta=-10>- 10 clicks</a>
+<div class=px30></div>
+<a href=# class="btn btn--s grd-row-col-3-6 change" data-target=clicks data-delta=10>+ 10 clicks</a>
+</div>
+</div>
+<label for=hours>Hours to deletion</label>
+<input type=number id=hours min=0 max=8760 value=6 required>
+<div class="grd p1">
+<div class="grd-row bold">
+<a href=# class="btn btn--s grd-row-col-3-6 change" data-target=hours data-delta=-24>- 1 day</a>
+<div class=px30></div>
+<a href=# class="btn btn--s grd-row-col-3-6 change" data-target=hours data-delta=24>+ 1 day</a>
+</div>
+</div>
+</div>
+<div class="bg--mid-gray grd p1">
+<input type=submit value=Create class=btn--green><br>
+<a href=# id=showopt class="btn btn--blue btn--s">Toggle extras</a>
+</div>
+<div id=extras class="bg--off-white p2 h">
+<input type=checkbox id=optPassword for=password>
+<label for=optPassword>Password protect</label>
+<input type=text class=disOnStart id=password minlength=1 required>
+<p>
+Do you need a <a href=# class=random for=password>pseudo random</a> password?<br>
+If you enable password protection, the user will be asked for an additional password to access the data. Note that a failed attempt will still count towards the views.
+</p>
+<div class=noImage>
+<br><input type=checkbox id=optEdit for=edit>
+<label for=optEdit>Allow Editing</label>
+<input type=text class=disOnStart id=edit minlength=1 required>
+<p>
+Do you need a <a href=# class=random for=edit>pseudo random</a> password?<br>
+Enabling Editing disables stats<br>
+Editing only applies to the views and the data; you can modify the link to redirect to a different site or show a different text, and to protect it by password
+</p>
+<br><input type=checkbox id=optDel for=del>
+<label for=optDel>Allow Deletion</label>
+<input type=text class=disOnStart id=del>
+<p>
+Do you need a <a href=# class=random for=del>pseudo random</a> password?<br>
+You can leave the password blank to allow public deletion
+</p>
+<br><input type=checkbox id=optStats for=stats>
+<label for=optStats>Collect Statistics</label>
+<input type=text class=disOnStart id=stats>
+<p>
+Do you need a <a href=# class=random for=stats>pseudo random</a> password?<br>
+You can leave the password to allow access to the stats<br>
+Enabling Stats disables editing and forces clicks to be at least 10<br>
+To track an user, a specific 'tracking' link must be used; the user can still opt for accessing the link without tracking
+</p>
+</div>
+</div>
+</form><br>
+<div class="measure p1 brdr--dark-gray h ready">
+<label for=final>Your Link</label>
+<input type=text id=final readonly>
+<p id=remember></p>
+<div class="grd p1">
+<div class="grd-row bold">
+<a href=# id=copy class="btn btn--s grd-row-col-3-6">Copy</a>
+<div class=px30></div>
+<a href=# id=close class="btn btn--s btn--gray grd-row-col-3-6">Close</a>
+</div>
+</div>
+</div><br>
+<div class="grd measure p1 brdr--dark-gray">
+<div class=grd-row>
+<a class=grd-row-col-2-6 href=https://github.com/stefanovazzocell/ target=_blank>GitHub</a>
+<a class=grd-row-col-2-6 href=../docs/terms target=_blank>Terms of Service</a>
+<a class=grd-row-col-2-6 href=../docs/privacy target=_blank>Privacy Policy</a>
+</div>
+</div><br>
+<div id=alert class="p1 bg--red fnt--white h"></div>
+<script src=/cdn/js/helpers.js></script>
+<script src=/cdn/js/plugins.js></script>
+<script src=/cdn/js/create.js></script>
+</body>
+</html>
