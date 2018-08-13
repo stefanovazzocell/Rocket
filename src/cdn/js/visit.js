@@ -44,13 +44,16 @@ function showResults() {
 }
 
 $$().ready(function() {
-	// Copy link
-	$$('#copy').onClick(function(e) {
-		e.preventDefault();
-		var toSelect = $$('#url').first();
-		toSelect.setSelectionRange(0, toSelect.value.length);
-		toSelect.select();
-		document.execCommand("copy");
+	// Visit link
+	$$('#visit').onClick(function(e) {
+		try {
+			var win = window.open($$('#url').val(), '_blank');
+			win.focus();
+			// Clear the current window (and don't store in history)
+			window.location.replace('about:blank');
+		} catch (err) {
+			msg('Error - The link is not valid');
+		}
 	});
 	// Show image
 	$$('#show').onClick(function() {
