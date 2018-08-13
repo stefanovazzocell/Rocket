@@ -61,13 +61,13 @@ function resizeImg(source) {
 		canvas.width = width;
 		canvas.height = height;
 		// Prepare variables
-		while (size <= 41100 && quality <= 1) {
+		while (size <= 30700 && quality <= 1) {
 			previous = current;
 			ctx.clearRect(0, 0, width, height);
 			ctx.drawImage(img, 0, 0, width, height);
 			current = canvas.toDataURL('image/jpeg', quality);
 			size = current.length;
-			if (quality == minQuality && size > 41100) {
+			if (quality == minQuality && size > 30700) {
 				resize += 1;
 				// Cut the size
 				width *= 0.8;
@@ -183,17 +183,18 @@ $$().ready(function() {
 		try {
 			var reader = new FileReader();
 			reader.onloadend = function() {
-				if (reader.result.length > 41100) {
-					// Too big
-					if ($$('#autoresize').first().checked) {
+				if (reader.result.length > 30700) {
+					// If too big, auto resize
+					resizeImg(reader.result);
+					/*if ($$('#autoresize').first().checked) {
 						// Resize
 						resizeImg(reader.result);
 					} else {
 						// reset
 						$$('#img').val('');
 						// Show a message
-						msg('The image is too big (' + Math.round(reader.result.length / 411) + '%), try the auto resize');
-					}
+						msg('The image is too big (' + Math.round(reader.result.length / 307) + '%), try the auto resize');
+					}*/
 				} else {
 					// Save render
 					imgRender = reader.result;
@@ -233,12 +234,12 @@ $$().ready(function() {
 						$$('#link').val());
 					// Load other things to remember
 					var remember = '';
-					if ($$('#optPassword').first().checked) remember += 'Your link password is <code>' + $$('#password').val() + '</code>';
-					if ($$('#optDel').first().checked && $$('#del').val() !== '') remember += 'Your delete password is <code>' + $$('#del').val() + '</code>';
-					if ($$('#optDel').first().checked && $$('#del').val() === '') remember += 'You have enabled public deletion';
-					if ($$('#optEdit').first().checked) remember += 'Your edit password is <code>' + $$('#edit').val() + '</code>';
-					if ($$('#optStats').first().checked && $$('#stats').val() !== '') remember += 'Your stats password is <code>' + $$('#stats').val() + '</code>';
-					if ($$('#optStats').first().checked && $$('#stats').val() === '') remember += 'You have enabled public stats';
+					if ($$('#optPassword').first().checked) remember += 'Your link password is <code>' + $$('#password').val() + '</code><br>';
+					if ($$('#optDel').first().checked && $$('#del').val() !== '') remember += 'Your delete password is <code>' + $$('#del').val() + '</code><br>';
+					if ($$('#optDel').first().checked && $$('#del').val() === '') remember += 'You have enabled public deletion<br>';
+					if ($$('#optEdit').first().checked) remember += 'Your edit password is <code>' + $$('#edit').val() + '</code><br>';
+					if ($$('#optStats').first().checked && $$('#stats').val() !== '') remember += 'Your stats password is <code>' + $$('#stats').val() + '</code><br>';
+					if ($$('#optStats').first().checked && $$('#stats').val() === '') remember += 'You have enabled public stats<br>';
 					$$('#remember').html(remember);
 					// Show UI
 					$$('.ready').removeClass('h');
