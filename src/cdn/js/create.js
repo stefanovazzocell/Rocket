@@ -230,7 +230,7 @@ $$().ready(function() {
 				if (status) {
 					// Load link
 					$$('#final').val(baseUrl +
-						($$('#optStats').first().checked ? 'track/' : '') +
+						($$('#optStats').first().checked ? 'track/#' : '#') +
 						$$('#link').val());
 					// Load other things to remember
 					var remember = '';
