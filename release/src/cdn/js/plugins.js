@@ -1,4 +1,4 @@
-const salt='t6IcYm1fvwo0O+NwEo9JAqKwcn88zeqO/U1DZvCsgzK3GGa1QzOZpRNs2/sr17d7HNsIsoXhaTbjMk7sMRr5Rw==';var autolocation=window.location.protocol+'//'+window.location.hostname;var server=autolocation+':8080';var baseUrl=autolocation+'/#';var alertTimeout=!1;function closeAlert(){clearTimeout(alertTimeout);alertTimeout=!1;$$('#alert').addClass('h')}
+const salt='t6IcYm1fvwo0O+NwEo9JAqKwcn88zeqO/U1DZvCsgzK3GGa1QzOZpRNs2/sr17d7HNsIsoXhaTbjMk7sMRr5Rw==';var autolocation=window.location.protocol+'//'+window.location.hostname;var server=autolocation+':8080';var baseUrl=autolocation+'/';var alertTimeout=!1;function closeAlert(){clearTimeout(alertTimeout);alertTimeout=!1;$$('#alert').addClass('h')}
 function msg(message,priority=!0){console.warn(message);if(priority||!alertTimeout){closeAlert();$$('#alert').html(message);alertTimeout=setTimeout(closeAlert,5000);$$('#alert').removeClass('h')}}
 function encrypt(data,password){return sjcl.encrypt(password,data,{mode:'gcm'})}
 function hash(data,iter=100000){return sjcl.codec.base64.fromBits(sjcl.hash.sha512.hash(sjcl.misc.pbkdf2(data,salt,iter)))}

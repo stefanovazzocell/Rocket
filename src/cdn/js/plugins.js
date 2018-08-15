@@ -3,7 +3,7 @@ const salt = 't6IcYm1fvwo0O+NwEo9JAqKwcn88zeqO/U1DZvCsgzK3GGa1QzOZpRNs2/sr17d7HN
 // The server address
 var autolocation = window.location.protocol + '//' + window.location.hostname;
 var server = autolocation + ':8080';
-var baseUrl = autolocation + '/#';
+var baseUrl = autolocation + '/';
 
 /* Utilities Plugin */
 
