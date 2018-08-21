@@ -14,7 +14,7 @@ function randomString(length=10) {
 	var pool = "ABCDEFGHJKLMNOPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz0123456789?/:@-._~!$&'()*+,;=";
 	var random = undefined;
 
-	for (var i = 0; i < length; i++) {
+	for (let i = 0; i < length; i++) {
 		try {
 			random = (window.crypto.getRandomValues(new Uint8Array(1))[0]/255);
 		} catch (err) {

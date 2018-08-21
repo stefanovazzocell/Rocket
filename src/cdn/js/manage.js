@@ -25,7 +25,7 @@ function showStats(values = {}) {
 	try {
 		var map = $$('#preview').first().getSVGDocument();
 		var allCountries = Object.keys(countries);
-		for (var i = allCountries.length - 1; i >= 0; i--) {
+		for (let i = allCountries.length - 1; i >= 0; i--) {
 			try {
 				map.querySelector('[cc=' + allCountries[i].toLowerCase() + ']').style.fill = '#000';
 			} catch (err) {
@@ -42,7 +42,7 @@ function showStats(values = {}) {
 	var htmlList = '';
 	var sorted = [];
 	// Get the html ready
-	for (var i = statsCC.length - 1; i >= 0; i--) {
+	for (let i = statsCC.length - 1; i >= 0; i--) {
 		// Update max min
 		max = Math.max(max, values[statsCC[i]])
 		if (min === undefined) {
@@ -56,7 +56,7 @@ function showStats(values = {}) {
 	sorted.sort(function(a, b) {
 		return a[1] - b[1];
 	});
-	for (var i = sorted.length - 1; i >= 0; i--) {
+	for (let i = sorted.length - 1; i >= 0; i--) {
 		// Add HTML
 		htmlList += '<tr><td>' + sorted[i][1] + '</td><td>';
 		htmlList += sorted[i][0] + '</td></tr>';
@@ -70,7 +70,7 @@ function showStats(values = {}) {
 	}
 	try {
 		var map = $$('#preview').first().getSVGDocument();
-		for (var i = statsCC.length - 1; i >= 0; i--) {
+		for (let i = statsCC.length - 1; i >= 0; i--) {
 			if (statsCC[i] != '??' && statsCC[i] != 'XX') {
 				var strength = (delta > 0 ? ((values[statsCC[i]] - min) / delta) * 255 : 255);
 				map.querySelector('[cc=' + statsCC[i].toLowerCase() + ']').style.fill = 'rgb(' + (255 - strength) + ',' + strength + ',0)';
