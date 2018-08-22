@@ -25,7 +25,7 @@ function showStats(values = {}) {
 	try {
 		var map = $$('#preview').first().getSVGDocument();
 		var allCountries = Object.keys(countries);
-		for (let i = allCountries.length - 1; i >= 0; i--) {
+		for (var i = allCountries.length - 1; i >= 0; i--) {
 			try {
 				map.querySelector('[cc=' + allCountries[i].toLowerCase() + ']').style.fill = '#000';
 			} catch (err) {
